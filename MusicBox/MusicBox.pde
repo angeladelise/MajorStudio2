@@ -15,6 +15,10 @@ AudioPlayer E_letter;
 
 int timer;
 
+int score = 0;
+
+int x = 0;
+
 
 void setup(){
   size(840, 600);
@@ -61,21 +65,26 @@ void draw(){
   fill(255,0,0);
   ellipse(270,330,30,30);
   F.play();
+  textSize(100);
+  text("F", width/2-50, height-50);
   }
   
- 
+
   //orange A
   if(timer>120 && timer < 200){
   fill(249,145,43);
   ellipse(390,297,30,30);
   A.play();
+  text("A", width/2-50, height-50);
   }
-  
+    
+    
   //yellow C
   if(timer>220 && timer < 300){
-  fill(255,255,0);
+  fill(255,215,90);
   ellipse(510,263,30,30);
   C.play();
+  text("C", width/2-50, height-50);
   }
     
   //green E
@@ -83,6 +92,7 @@ void draw(){
   fill(42,235,77);
   ellipse(630,230,30,30);
   E_up.play();
+  text("E", width/2-50, height-50);
   }
   
   
@@ -137,9 +147,54 @@ void draw(){
   }
   ellipse(630,230,30,30);
 
+
+  //MUSIC PLAYING
+  //for A start at 440, play 3 times before give answer
+  //TEST FOR A
+ if(timer > 440 && score <1){
+   for(int i =0; i< 160; i= i +80){
+     if(A.isPlaying() == false){
+      A.rewind();
+      A.play();
+      x ++;
+      println(x);
+
+      }
+   }
+   
+    //A button
+    if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312 && mousePressed == true){
+    score ++;
+    }
+
+   } // end of A
+  
+    //TEST FOR E
+   if(timer > 540 && score == 1){
+   for(int i =0; i< 160; i= i +80){
+     if(E_up.isPlaying() == false){
+      E_up.rewind();
+      E_up.play();
+      x ++;
+      println(x);
+
+      }
+   }
+   
+    //E button
+    if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && mousePressed == true){
+    score ++;
+    }
+
+   } // end of E
+
+
+
   }//END OF GAME STATE
   
-  println(mouseX, mouseY);
+  
+  println(score);
+  //println(mouseX, mouseY);
   }
 
 
