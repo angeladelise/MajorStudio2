@@ -16,6 +16,7 @@ AudioPlayer E_letter;
 int timer;
 
 int score = 0;
+int lose = 0;
 
 int x = 0;
 
@@ -151,26 +152,27 @@ void draw(){
   //MUSIC PLAYING
   //for A start at 440, play 3 times before give answer
   //TEST FOR A
- if(timer > 440 && score <1){
+ if(timer > 440 && score == 0 && lose == 0){
    for(int i =0; i< 160; i= i +80){
      if(A.isPlaying() == false){
       A.rewind();
       A.play();
       x ++;
       println(x);
-
       }
    }
-   
     //A button
     if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312 && mousePressed == true){
-    score ++;
+    score = 1;
+    }
+    else if ((mouseX < 375  || mouseX > 405) && (mouseY < 282 || mouseY > 312) && mousePressed == true){
+    lose = 1;
     }
 
    } // end of A
   
     //TEST FOR E
-   if(timer > 540 && score == 1){
+   if(timer > 500 && (score == 1 && lose == 0) || (score ==0 && lose == 1)){
    for(int i =0; i< 160; i= i +80){
      if(E_up.isPlaying() == false){
       E_up.rewind();
@@ -181,9 +183,23 @@ void draw(){
       }
    }
    
+   
     //E button
-    if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && mousePressed == true){
-    score ++;
+    if (timer > 580 && mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && mousePressed == true){
+      if (score == 0){
+      score = 1;
+      }
+      else if (score ==1){
+      score = 2;
+      }
+    }
+    else if (timer > 580 && (mouseX < 615  || mouseX > 645) && (mouseY < 215 || mouseY > 245) && mousePressed == true){
+      if (lose == 0){
+      lose = 1;
+      }
+      else if (lose ==1){
+      lose = 2;
+      }
     }
 
    } // end of E
@@ -193,8 +209,9 @@ void draw(){
   }//END OF GAME STATE
   
   
-  println(score);
-  //println(mouseX, mouseY);
+   println("score" + str(score));
+   println("lose" + str(lose));
+     //println(mouseX, mouseY);
   }
 
 
