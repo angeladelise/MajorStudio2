@@ -8,6 +8,8 @@ PImage letterC;
 PImage letterE;
 PImage click;
 PImage tryAgain;
+PImage goodJob;
+PImage title;
 
 PFont font;
 
@@ -35,6 +37,7 @@ int timerTest;
 boolean nextTest;
 boolean clicked = false;
 boolean loseState;
+boolean winState;
 
 void setup(){
   size(840, 600);
@@ -49,6 +52,8 @@ void setup(){
   
    click = loadImage("ClickToPlay.png");
    tryAgain = loadImage("tryAgain.png");
+   goodJob = loadImage("goodJob.png");
+   title = loadImage("MusicBoxTitle.png");
     
    // setup player
   minim = new Minim(this);
@@ -76,6 +81,7 @@ void draw(){
   
   if (state == 2){
       image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       //textFont(font, 100);
       timer++;
@@ -138,17 +144,15 @@ void draw(){
   
   //GAME STATE
   
-  if (state == 3){
-      //red F
-      //if (timer >420){
-      //background(255);
+ //TEST FOR A STATE 3
+    if(state == 3){
       image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
       timer ++;
       
-      if (timer > timerTest + 30){
       if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345){
       stroke(255,0,0);
       }
@@ -187,30 +191,42 @@ void draw(){
       }
       ellipse(630,230,30,30);
         
-      //MUSIC PLAYING
-      //for A start at 480, play 3 times before give answer
-      //TEST FOR A
-     if(timer > 500){
-     for(int i =0; i< 160; i= i +80){
-       if(A.isPlaying() == false){
-        A.rewind();
-        A.play();
-        }
-      }//end of int loop 
- 
-  
-      } // end of A TEST
-     }//end of timetest
-    }//END OF GAME STATE 3
+    //MUSIC PLAYING FOR A
+    if(timer > 500 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(A.isPlaying() == false){
+          A.rewind();
+          A.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 4;
+           }
+         }
+         
+    if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+       } // end of A state 3
    
-      
-      
      
-      //end of state 3
       
      //TEST FOR E STATE 4
     if(state == 4){
-      background(255);
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
@@ -255,7 +271,7 @@ void draw(){
       ellipse(630,230,30,30);
         
     //MUSIC PLAYING FOR E
-    if(timer > 600){
+    if(timer > 600 && winState == false && loseState == false){
        for(int i =0; i< 160; i= i +80){
          if(E_up.isPlaying() == false){
           E_up.rewind();
@@ -263,13 +279,33 @@ void draw(){
            }
           }
          }
-       } // end of E
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 5;
+           }
+         }
+         
+     if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+       } // end of E state 4
        
        
        
      //STATE 5 C 
      if (state == 5){
-      background(255);
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
@@ -317,7 +353,7 @@ void draw(){
     
       //MUSIC PLAYING
       //TEST FOR C //<>//
-     if(timer > 620){
+     if(timer > 620 && winState == false && loseState == false){
        for(int i =0; i< 160; i= i +80){
          if(C.isPlaying() == false){
           C.rewind();
@@ -327,11 +363,31 @@ void draw(){
        }//end of int loop 
        
        } // end of C TEST
+       
+       if(winState == true){
+     if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 6;
+           }
+         }
+       
+    if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
     }//END OF GAME STATE 5
       
      //STATE  6 F
      if (state == 6){
-      background(255);
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
@@ -381,7 +437,7 @@ void draw(){
     
       //MUSIC PLAYING
       //TEST FOR F
-     if(timer > 700){
+     if(timer > 700&& winState == false && loseState == false){
        for(int i =0; i< 160; i= i +80){
          if(F.isPlaying() == false){
           F.rewind();
@@ -391,12 +447,32 @@ void draw(){
        }//end of int loop 
        
        } // end of F TEST
+       
+       if(winState == true){
+     if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 7;
+           }
+         }
+       
+    if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
     }//END OF GAME STATE 6
 
 
    //STATE  7 C
      if (state == 7){
-      background(255);
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
@@ -446,7 +522,7 @@ void draw(){
     
       //MUSIC PLAYING
       //TEST FOR C
-     if(timer > 700){
+     if(timer > 700 && winState == false && loseState == false){
        for(int i =0; i< 160; i= i +80){
          if(C.isPlaying() == false){
           C.rewind();
@@ -456,11 +532,31 @@ void draw(){
        }//end of int loop 
        
        } // end of C TEST
+       
+       if(winState == true){
+     if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 8;
+           }
+         }
+       
+    if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
     }//END OF GAME STATE 7
     
      //TEST FOR E STATE 8
     if(state == 8){
-      background(255);
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
@@ -505,7 +601,7 @@ void draw(){
       ellipse(630,230,30,30);
         
     //MUSIC PLAYING FOR E
-    if(timer > 800){
+    if(timer > 800 && winState == false && loseState == false){
        for(int i =0; i< 160; i= i +80){
          if(E_up.isPlaying() == false){
           E_up.rewind();
@@ -513,18 +609,37 @@ void draw(){
            }
           }
          }
+         
+      if(winState == true){
+     if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 9;
+           }
+         }
+         
+    if(loseState == true){
+     if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+         
        } // end of E
        
-       if (state == 9){
-      //red F
-      //if (timer >420){
-      background(255);
+     //TEST FOR A STATE 9
+    if(state == 9){
+      image(background, 0, 0);
+      image(title, 0, -10);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
       timer ++;
       
-      if (timer > timerTest + 30){
       if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345){
       stroke(255,0,0);
       }
@@ -563,171 +678,211 @@ void draw(){
       }
       ellipse(630,230,30,30);
         
-      //MUSIC PLAYING
-      //for A start at 480, play 3 times before give answer
-      //TEST FOR A
-     if(timer > 500){
-     for(int i =0; i< 160; i= i +80){
-       if(A.isPlaying() == false){
-        A.rewind();
-        A.play();
-        }
-      }//end of int loop 
- 
-  
-      } // end of A TEST
-     }//end of timetest
-    }//END OF GAME STATE A
+    //MUSIC PLAYING FOR A
+    if(timer > 500 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(A.isPlaying() == false){
+          A.rewind();
+          A.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 4;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+       } // end of A state 9 A
     
     if (state == 10){
       text("You won Level 1", 300, 100);
     if (mousePressed == true){
       //state = 2;
       }
+      
     }//end of state 10
 
       println("score" + str(score));
       println("lose" + str(lose));
       println("state" + str(state));
       println("timeTest" + str(timerTest));
+      println("time" + str(timer));
 
-      fill(0);
-      text(str(score), 700, 50);
-      
-      
-      
+
+     // fill(0);
+     // text(str(score), 700, 50);
 
   }
   
   void mouseClicked(){
-  //clicked = true;
   
     //A Button
     if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312 && state == 3 && timer > timerTest+60){
         score += 1;
-        state = 4;
+        //state = 4;
         timerTest = timer;
         right.play();
         right.rewind();
+        winState = true;
+        loseState = false;
+
         }
         else if (state == 3 && timer > timerTest+60){
         lose += 1;
-        //state = 4;
         timerTest = timer;
-        //wrong.play();
-        //wrong.rewind();
+     
+        wrong.play();
+        wrong.rewind();
         loseState = true;
-        image(tryAgain, 0, 70);
+        winState = false;
 
         }
         
     //E button
         if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && state == 4 && timer > timerTest+60){
           score += 1;
-          state = 5;
+         // state = 5;
           timerTest = timer;
           right.play();
           right.rewind();
+          winState = true;
+          loseState = false;
+
         }
         else if (state == 4 && timer > timerTest+60){
-          lose += 1;
-          //state = 5;
-          timerTest = timer;
-          wrong.play();
-          wrong.rewind();
-          image(tryAgain, 0, 70);
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
         }
       
       
       //C button
        if(mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278 && state == 5 && timer > timerTest+60){
          score += 1;
-         state = 6;
+         //state = 6;
          timerTest = timer;
          right.play();
          right.rewind();
+         winState = true;
+         loseState = false;
+
        }
       else if ((mouseX > 495  || mouseX < 525) && (mouseY > 248 || mouseY < 278) && state == 5 && timer > timerTest+60){
          lose += 1;
-         //state = 6;
-         timerTest = timer;
-         wrong.play();
-         wrong.rewind();
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
       }
       
       //F button
       if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345 && state == 6 && timer > timerTest+60){
        score += 1;
-       state = 7;
+      // state = 7;
        timerTest = timer;
        right.play();
        right.rewind();
+       winState = true;
+       loseState = false;
+
       }
       else if ((mouseX < 255 || mouseX > 285) && (mouseY > 315 || mouseY < 345) && state == 6 && timer > timerTest+60){
        lose += 1;
-       //state =7;
-       timerTest = timer;
+        timerTest = timer;
+     
         wrong.play();
         wrong.rewind();
+        loseState = true;
+        winState = false;
       }
       
        //C button
        if(mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278 && state == 7 && timer > timerTest+60){
          score += 1;
-         state = 8;
+         //state = 8;
          timerTest = timer;
         right.play();
         right.rewind();
+        winState = true;
+        loseState = false;
+
        }
       else if ((mouseX > 495  || mouseX < 525) && (mouseY > 248 || mouseY < 278) && state == 7 && timer > timerTest+60){
          lose += 1;
-         //state = 8;
-         timerTest = timer;
-         wrong.play();
+        timerTest = timer;
+     
+        wrong.play();
         wrong.rewind();
+        loseState = true;
+        winState = false;
       }
       
        //E button
         if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && state == 8 && timer > timerTest+60){
           score += 1;
-          state = 9;
+          //state = 9;
           timerTest = timer;
           right.play();
           right.rewind();
+          winState = true;
+          loseState = false;
+
         }
         else if (state == 8 && timer > timerTest+60){
           lose += 1;
-          //state = 9;
-          timerTest = timer;
-          wrong.play();
-          wrong.rewind();
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
         }
         
         //A button
         if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312 && state == 9 && timer > timerTest+60){
         score += 1;
-        state = 10;
+        //state = 10;
         timerTest = timer;
         right.play();
         right.rewind();
+        winState = true;
+        loseState = false;
+
         }
         
         else if (state == 9 && timer > timerTest+60){
         lose += 1;
-       // state = 10;
         timerTest = timer;
+     
         wrong.play();
         wrong.rewind();
+        loseState = true;
+        winState = false;
         }
         
-        //if(loseState == true){
-        //timer ++;
-        //while(timer < timerTest + 60){
-        //wrong.play();
-        //wrong.rewind();
-        //image(tryAgain, 0, 70);
-        //loseState = false;
-        //}
-     // }////end of loseState
       
   }
+  
+  
+  
+  
