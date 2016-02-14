@@ -1,5 +1,15 @@
 int state;
 PImage image;
+PImage home;
+PImage background;
+PImage letterF;
+PImage letterA;
+PImage letterC;
+PImage letterE;
+PImage click;
+
+PFont font;
+
 
 import ddf.minim.*;
 Minim minim;
@@ -29,8 +39,16 @@ boolean clicked = false;
 void setup(){
   size(840, 600);
   state = 1;
-  image = loadImage("music_game_basic.png");
+  image = loadImage("music_game_board2.png");
+  home = loadImage("MusicBoxHome.jpg");
+  background = loadImage("MusicBoxBackground.png");
+  letterF = loadImage("LetterF.png");
+  letterA = loadImage("LetterA.png");
+  letterC = loadImage("LetterC.png");
+  letterE = loadImage("LetterE.png");
   
+   click = loadImage("ClickToPlay.png");
+    
    // setup player
   minim = new Minim(this);
   F = minim.loadFile("F_all.wav", 1024);
@@ -53,16 +71,18 @@ void draw(){
   
   
   if (state == 1){
-    text("Click to Play", 300, 100);
+    //text("Click to Play", 300, 100);
+    image(home, 0, 0);
+
     if (mousePressed == true){
       state = 2;
     }
   }
   
   if (state == 2){
-      background(255);
+      image(background, 0, 0);
       image(image, 15, 130, 800, 300);
-      
+      //textFont(font, 100);
       timer++;
       strokeWeight(4);
       //each note plays for 80 frames and has 20 frames inbetween each one
@@ -72,8 +92,9 @@ void draw(){
       fill(255,0,0);
       ellipse(270,330,30,30);
       F.play();
-      textSize(100);
-      text("F", width/2-50, height-50);
+     // textSize(100);
+      //text("F", width/2-50, height-50);
+      image(letterF, 0,50);
       }
       
     
@@ -82,7 +103,9 @@ void draw(){
       fill(249,145,43);
       ellipse(390,297,30,30);
       A.play();
-      text("A", width/2-50, height-50);
+      //text("A", width/2-50, height-50);
+      image(letterA, 0,50);
+
       }
         
         
@@ -91,7 +114,9 @@ void draw(){
       fill(255,215,90);
       ellipse(510,263,30,30);
       C.play();
-      text("C", width/2-50, height-50);
+      //text("C", width/2-50, height-50);
+      image(letterC, 0,50);
+
       }
         
       //green E
@@ -99,11 +124,14 @@ void draw(){
       fill(42,235,77);
       ellipse(630,230,30,30);
       E_up.play();
-      text("E", width/2-50, height-50);
+     // text("E", width/2-50, height-50);
+      image(letterE, 0,50);
+
       }
       
       if(timer > 420){
-        text("Click to Play", 300, 100);
+        //text("Click to Play", 300, 100);
+        image(click, 0, 70);
         if (mousePressed == true){
           state = 3;
           test = 0;
@@ -118,7 +146,8 @@ void draw(){
   if (state == 3){
       //red F
       //if (timer >420){
-      background(255);
+      //background(255);
+      image(background, 0, 0);
       image(image, 15, 130, 800, 300);
       fill(255);
       strokeWeight(4);
