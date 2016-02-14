@@ -7,6 +7,7 @@ PImage letterA;
 PImage letterC;
 PImage letterE;
 PImage click;
+PImage tryAgain;
 
 PFont font;
 
@@ -18,10 +19,8 @@ AudioPlayer A;
 AudioPlayer C;
 AudioPlayer E_up;
 
-AudioPlayer F_letter;
-AudioPlayer A_letter;
-AudioPlayer C_letter;
-AudioPlayer E_letter;
+AudioPlayer right;
+AudioPlayer wrong;
 
 int timer;
 
@@ -35,6 +34,7 @@ int timerTest;
 
 boolean nextTest;
 boolean clicked = false;
+boolean loseState;
 
 void setup(){
   size(840, 600);
@@ -48,22 +48,17 @@ void setup(){
   letterE = loadImage("LetterE.png");
   
    click = loadImage("ClickToPlay.png");
+   tryAgain = loadImage("tryAgain.png");
     
    // setup player
   minim = new Minim(this);
   F = minim.loadFile("F_all.wav", 1024);
- // F_letter = minim.loadFile("F_letter.wav", 1024);
- // F.loop(); 
   A = minim.loadFile("A_all.wav", 1024);
- // A_letter = minim.loadFile("A_letter.wav", 1024);
-  //A.loop(); 
   C = minim.loadFile("C_all.wav", 1024);
- // C_letter = minim.loadFile("C_letter.wav", 1024);
-  //C.loop(); 
- // E_letter = minim.loadFile("E_letter.wav", 1024);
-  E_up = minim.loadFile("E_up_all.wav", 1024);
-
- // E_up.loop(); 
+  E_up = minim.loadFile("E_up_all.wav", 1024); 
+  
+  right = minim.loadFile("right.mp3");
+  wrong = minim.loadFile("wrong.mp3");
 }
 
 
@@ -598,6 +593,9 @@ void draw(){
 
       fill(0);
       text(str(score), 700, 50);
+      
+      
+      
 
   }
   
@@ -609,11 +607,18 @@ void draw(){
         score += 1;
         state = 4;
         timerTest = timer;
+        right.play();
+        right.rewind();
         }
-        else if ((mouseX < 375  || mouseX > 405) && (mouseY < 282 || mouseY > 312) && state == 3 && timer > timerTest+60){
+        else if (state == 3 && timer > timerTest+60){
         lose += 1;
-        state = 4;
+        //state = 4;
         timerTest = timer;
+        //wrong.play();
+        //wrong.rewind();
+        loseState = true;
+        image(tryAgain, 0, 70);
+
         }
         
     //E button
@@ -621,13 +626,16 @@ void draw(){
           score += 1;
           state = 5;
           timerTest = timer;
-
+          right.play();
+          right.rewind();
         }
         else if (state == 4 && timer > timerTest+60){
           lose += 1;
-          state = 5;
+          //state = 5;
           timerTest = timer;
-
+          wrong.play();
+          wrong.rewind();
+          image(tryAgain, 0, 70);
         }
       
       
@@ -636,13 +644,15 @@ void draw(){
          score += 1;
          state = 6;
          timerTest = timer;
-
+         right.play();
+         right.rewind();
        }
       else if ((mouseX > 495  || mouseX < 525) && (mouseY > 248 || mouseY < 278) && state == 5 && timer > timerTest+60){
          lose += 1;
-         state = 6;
+         //state = 6;
          timerTest = timer;
-
+         wrong.play();
+         wrong.rewind();
       }
       
       //F button
@@ -650,13 +660,15 @@ void draw(){
        score += 1;
        state = 7;
        timerTest = timer;
-
+       right.play();
+       right.rewind();
       }
       else if ((mouseX < 255 || mouseX > 285) && (mouseY > 315 || mouseY < 345) && state == 6 && timer > timerTest+60){
        lose += 1;
-       state =7;
+       //state =7;
        timerTest = timer;
-
+        wrong.play();
+        wrong.rewind();
       }
       
        //C button
@@ -664,13 +676,15 @@ void draw(){
          score += 1;
          state = 8;
          timerTest = timer;
-
+        right.play();
+        right.rewind();
        }
       else if ((mouseX > 495  || mouseX < 525) && (mouseY > 248 || mouseY < 278) && state == 7 && timer > timerTest+60){
          lose += 1;
-         state = 8;
+         //state = 8;
          timerTest = timer;
-
+         wrong.play();
+        wrong.rewind();
       }
       
        //E button
@@ -678,13 +692,15 @@ void draw(){
           score += 1;
           state = 9;
           timerTest = timer;
-
+          right.play();
+          right.rewind();
         }
         else if (state == 8 && timer > timerTest+60){
           lose += 1;
-          state = 9;
+          //state = 9;
           timerTest = timer;
-
+          wrong.play();
+          wrong.rewind();
         }
         
         //A button
@@ -692,12 +708,26 @@ void draw(){
         score += 1;
         state = 10;
         timerTest = timer;
+        right.play();
+        right.rewind();
         }
         
-        else if ((mouseX < 375  || mouseX > 405) && (mouseY < 282 || mouseY > 312) && state == 9 && timer > timerTest+60){
+        else if (state == 9 && timer > timerTest+60){
         lose += 1;
-        state = 10;
+       // state = 10;
         timerTest = timer;
+        wrong.play();
+        wrong.rewind();
         }
+        
+        //if(loseState == true){
+        //timer ++;
+        //while(timer < timerTest + 60){
+        //wrong.play();
+        //wrong.rewind();
+        //image(tryAgain, 0, 70);
+        //loseState = false;
+        //}
+     // }////end of loseState
       
   }
