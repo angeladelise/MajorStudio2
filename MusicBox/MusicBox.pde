@@ -10,6 +10,7 @@ PImage click;
 PImage tryAgain;
 PImage goodJob;
 PImage title;
+PImage win;
 
 PFont font;
 
@@ -23,6 +24,8 @@ AudioPlayer E_up;
 
 AudioPlayer right;
 AudioPlayer wrong;
+
+AudioPlayer intro;
 
 int timer;
 
@@ -54,6 +57,7 @@ void setup(){
    tryAgain = loadImage("tryAgain.png");
    goodJob = loadImage("goodJob.png");
    title = loadImage("MusicBoxTitle.png");
+   win = loadImage("MusicBoxWin.png");
     
    // setup player
   minim = new Minim(this);
@@ -64,6 +68,7 @@ void setup(){
   
   right = minim.loadFile("right.mp3");
   wrong = minim.loadFile("wrong.mp3");
+  intro = minim.loadFile("piano.wav");
 }
 
 
@@ -73,9 +78,12 @@ void draw(){
   if (state == 1){
     //text("Click to Play", 300, 100);
     image(home, 0, 0);
-
+   // intro.setVolume(5);
+    intro.play();
     if (mousePressed == true){
       state = 2;
+      intro.shiftGain(1.0, -15.0, 200);
+      //intro.pause();
     }
   }
   
@@ -102,7 +110,7 @@ void draw(){
       //orange A
       if(timer>120 && timer < 200){
       fill(249,145,43);
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       A.play();
       //text("A", width/2-50, height-50);
       image(letterA, 0,50);
@@ -113,7 +121,7 @@ void draw(){
       //yellow C
       if(timer>220 && timer < 300){
       fill(255,215,90);
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
       C.play();
       //text("C", width/2-50, height-50);
       image(letterC, 0,50);
@@ -123,7 +131,7 @@ void draw(){
       //green E
       if(timer>320 && timer < 400){
       fill(42,235,77);
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
       E_up.play();
      // text("E", width/2-50, height-50);
       image(letterE, 0,50);
@@ -169,7 +177,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -179,7 +187,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -189,7 +197,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
         
     //MUSIC PLAYING FOR A
     if(timer > 500 && winState == false && loseState == false){
@@ -248,7 +256,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -258,7 +266,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -268,7 +276,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
         
     //MUSIC PLAYING FOR E
     if(timer > 600 && winState == false && loseState == false){
@@ -327,7 +335,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -337,7 +345,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -347,7 +355,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
     
     println(timer);
     
@@ -411,7 +419,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -421,7 +429,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -431,7 +439,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
     
     println(timer);
     
@@ -496,7 +504,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -506,7 +514,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -516,7 +524,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
     
     println(timer);
     
@@ -578,7 +586,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -588,7 +596,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -598,7 +606,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
         
     //MUSIC PLAYING FOR E
     if(timer > 800 && winState == false && loseState == false){
@@ -656,7 +664,7 @@ void draw(){
       else{
       stroke(0);
       }     
-      ellipse(390,297,30,30);
+      ellipse(390,298,30,30);
       
       //yellow C
       fill(255);
@@ -666,7 +674,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(510,263,30,30);
+      ellipse(510,264,30,30); 
         
       //green E
       fill(255);
@@ -676,7 +684,7 @@ void draw(){
       else{
       stroke(0);
       }
-      ellipse(630,230,30,30);
+      ellipse(630,232,30,30);
         
     //MUSIC PLAYING FOR A
     if(timer > 500 && winState == false && loseState == false){
@@ -694,7 +702,7 @@ void draw(){
        }
        else{
          winState = false;
-         state = 4;
+         state = 10;
            }
          }
          
@@ -709,11 +717,8 @@ void draw(){
        } // end of A state 9 A
     
     if (state == 10){
-      text("You won Level 1", 300, 100);
-    if (mousePressed == true){
-      //state = 2;
-      }
-      
+      image(win, 0, 0);
+  
     }//end of state 10
 
       println("score" + str(score));
