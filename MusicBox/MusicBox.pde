@@ -370,13 +370,204 @@ void draw(){
     }//END OF GAME STATE 6
 
 
+   //STATE  7 C
+     if (state == 7){
+      background(255);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      test = 1;
+      timer ++;
+      
+      //red F
+      if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345){
+      stroke(255,0,0);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(270,330,30,30);
+     
+      //orange A
+      fill(255);
+      if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312){
+      stroke(249,145,43);
+      }      
+      else{
+      stroke(0);
+      }     
+      ellipse(390,297,30,30);
+      
+      //yellow C
+      fill(255);
+      if (mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278){
+      stroke(242,236,55);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(510,263,30,30);
+        
+      //green E
+      fill(255);
+      if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245){
+      stroke(0,255,0);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(630,230,30,30);
+    
+    println(timer);
+    
+      //MUSIC PLAYING
+      //TEST FOR C
+     if(timer > 700){
+       for(int i =0; i< 160; i= i +80){
+         if(C.isPlaying() == false){
+          C.rewind();
+          C.play();
+         }
+    
+       }//end of int loop 
+       
+       } // end of C TEST
+    }//END OF GAME STATE 7
+    
+     //TEST FOR E STATE 8
+    if(state == 8){
+      background(255);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345){
+      stroke(255,0,0);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(270,330,30,30);
+     
+      //orange A
+      fill(255);
+      if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312){
+      stroke(249,145,43);
+      }      
+      else{
+      stroke(0);
+      }     
+      ellipse(390,297,30,30);
+      
+      //yellow C
+      fill(255);
+      if (mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278){
+      stroke(242,236,55);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(510,263,30,30);
+        
+      //green E
+      fill(255);
+      if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245){
+      stroke(0,255,0);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(630,230,30,30);
+        
+    //MUSIC PLAYING FOR E
+    if(timer > 800){
+       for(int i =0; i< 160; i= i +80){
+         if(E_up.isPlaying() == false){
+          E_up.rewind();
+          E_up.play();
+           }
+          }
+         }
+       } // end of E
+       
+       if (state == 9){
+      //red F
+      //if (timer >420){
+      background(255);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      if (timer > timerTest + 30){
+      if (mouseX > 255 && mouseX < 285 && mouseY > 315 && mouseY < 345){
+      stroke(255,0,0);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(270,330,30,30);
+     
+      //orange A
+      fill(255);
+      if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312){
+      stroke(249,145,43);
+      }      
+      else{
+      stroke(0);
+      }     
+      ellipse(390,297,30,30);
+      
+      //yellow C
+      fill(255);
+      if (mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278){
+      stroke(242,236,55);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(510,263,30,30);
+        
+      //green E
+      fill(255);
+      if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245){
+      stroke(0,255,0);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(630,230,30,30);
+        
+      //MUSIC PLAYING
+      //for A start at 480, play 3 times before give answer
+      //TEST FOR A
+     if(timer > 500){
+     for(int i =0; i< 160; i= i +80){
+       if(A.isPlaying() == false){
+        A.rewind();
+        A.play();
+        }
+      }//end of int loop 
+ 
+  
+      } // end of A TEST
+     }//end of timetest
+    }//END OF GAME STATE A
+    
+    if (state == 10){
+      text("You won Level 1", 300, 100);
+    if (mousePressed == true){
+      //state = 2;
+      }
+    }//end of state 10
+
       println("score" + str(score));
       println("lose" + str(lose));
       println("state" + str(state));
       println("timeTest" + str(timerTest));
 
       fill(0);
-      //textSize(20);
       text(str(score), 700, 50);
 
   }
@@ -438,5 +629,46 @@ void draw(){
        timerTest = timer;
 
       }
+      
+       //C button
+       if(mouseX > 495  && mouseX < 525 && mouseY > 248 && mouseY < 278 && state == 7 && timer > timerTest+60){
+         score += 1;
+         state = 8;
+         timerTest = timer;
+
+       }
+      else if ((mouseX > 495  || mouseX < 525) && (mouseY > 248 || mouseY < 278) && state == 7 && timer > timerTest+60){
+         lose += 1;
+         state = 8;
+         timerTest = timer;
+
+      }
+      
+       //E button
+        if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && state == 8 && timer > timerTest+60){
+          score += 1;
+          state = 9;
+          timerTest = timer;
+
+        }
+        else if (state == 8 && timer > timerTest+60){
+          lose += 1;
+          state = 9;
+          timerTest = timer;
+
+        }
+        
+        //A button
+        if (mouseX > 375  && mouseX < 405 && mouseY > 282 && mouseY < 312 && state == 9 && timer > timerTest+60){
+        score += 1;
+        state = 10;
+        timerTest = timer;
+        }
+        
+        else if ((mouseX < 375  || mouseX > 405) && (mouseY < 282 || mouseY > 312) && state == 9 && timer > timerTest+60){
+        lose += 1;
+        state = 10;
+        timerTest = timer;
+        }
       
   }
