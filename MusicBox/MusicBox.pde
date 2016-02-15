@@ -18,6 +18,8 @@ PImage tryAgain;
 PImage goodJob;
 PImage title;
 PImage win;
+PImage win2;
+
 
 PFont font;
 
@@ -57,7 +59,7 @@ boolean winState;
 
 void setup(){
   size(840, 600);
-  state = 11;
+  state = 1;
   image = loadImage("music_game_board2.png");
   home = loadImage("MusicBoxHome.jpg");
   background = loadImage("MusicBoxBackground.png");
@@ -77,6 +79,8 @@ void setup(){
    goodJob = loadImage("goodJob.png");
    title = loadImage("MusicBoxTitle.png");
    win = loadImage("MusicBoxWin.png");
+   win2 = loadImage("MusicBoxWin2.png");
+
     
    // setup player
   minim = new Minim(this);
@@ -900,7 +904,7 @@ void draw(){
        }
        else{
          winState = false;
-         state = 10;
+         state = 13;
            }
          }
          
@@ -912,11 +916,810 @@ void draw(){
          loseState = false;
            }
          }
-    
-    
-    }
+    }//end of state 12
 
+//STATE 13
+    if(state == 13){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(D.isPlaying() == false){
+          D.rewind();
+          D.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 14;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 13
+    
+//STATE 14
+    if(state == 14){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(E.isPlaying() == false){
+          E.rewind();
+          E.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 15;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 14
+    
+//STATE 15
+    if(state == 15){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(F_up.isPlaying() == false){
+          F_up.rewind();
+          F_up.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 16;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 15
+    
+//STATE 16
+    if(state == 16){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(B.isPlaying() == false){
+          B.rewind();
+          B.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 17;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 16
+    
+ //STATE 17
+    if(state == 17){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(E.isPlaying() == false){
+          E.rewind();
+          E.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 18;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 17
 
+//STATE 18
+    if(state == 18){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(G.isPlaying() == false){
+          G.rewind();
+          G.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 19;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 18
+    
+ //STATE 19
+    if(state == 19){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR F
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(F.isPlaying() == false){
+          F.rewind();
+          F.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 20;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 19
+    
+//STATE 20
+    if(state == 20){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(D.isPlaying() == false){
+          D.rewind();
+          D.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 21;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 20
+    
+    //STATE 21
+    if(state == 21){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(B.isPlaying() == false){
+          B.rewind();
+          B.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 22;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    }//end of state 21
+    
+//STATE 22
+    if (state == 22){
+      image(win2, 0, 0);
+      if(mousePressed == true){
+      //state = 11;
+      timerTest = timer;
+      }
+  
+    }//end of state 10
+    
       println("score" + str(score));
       println("lose" + str(lose));
       println("state" + str(state));
@@ -953,7 +1756,7 @@ void draw(){
 
         }
         
-    //E button
+    //E_UP button
         if (mouseX > 615  && mouseX < 645 && mouseY > 215 && mouseY < 245 && state == 4 && timer > timerTest+60){
           score += 1;
          // state = 5;
@@ -1081,6 +1884,114 @@ void draw(){
         winState = false;
         }
         
+        
+        
+//EGBDF
+        
+    //G button
+        if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328 && (state == 12 || state == 18) && timer > timerTest+60){
+          score += 1;
+         // state = 5;
+          timerTest = timer;
+          right.play();
+          right.rewind();
+          winState = true;
+          loseState = false;
+
+        }
+        else if ((state == 12 || state == 18) && timer > timerTest+60){
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
+        }
+                
+    //D button
+        if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262 && (state == 13 || state == 20) && timer > timerTest+60){
+          score += 1;
+         // state = 5;
+          timerTest = timer;
+          right.play();
+          right.rewind();
+          winState = true;
+          loseState = false;
+
+        }
+        else if ((state == 13 || state == 20) && timer > timerTest+60){
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
+        }
+                
+    //E button
+        if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360 && (state == 14 || state == 17) && timer > timerTest+60){
+          score += 1;
+         // state = 5;
+          timerTest = timer;
+          right.play();
+          right.rewind();
+          winState = true;
+          loseState = false;
+
+        }
+        else if ((state == 14 || state == 17) && timer > timerTest+60){
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
+        }
+                
+    //F_UP button
+        if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230 && (state == 15 || state == 19) && timer > timerTest+60){
+          score += 1;
+         // state = 5;
+          timerTest = timer;
+          right.play();
+          right.rewind();
+          winState = true;
+          loseState = false;
+
+        }
+        else if ((state == 15 || state == 19) && timer > timerTest+60){
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
+        }
+                
+    //B button
+        if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294 && (state == 16 || state == 21)&& timer > timerTest+60){
+          score += 1;
+         // state = 5;
+          timerTest = timer;
+          right.play();
+          right.rewind();
+          winState = true;
+          loseState = false;
+
+        }
+        else if ((state == 16 || state == 21) && timer > timerTest+60){
+        lose += 1;
+        timerTest = timer;
+     
+        wrong.play();
+        wrong.rewind();
+        loseState = true;
+        winState = false;
+        }
       
   }
   
