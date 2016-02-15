@@ -5,7 +5,14 @@ PImage background;
 PImage letterF;
 PImage letterA;
 PImage letterC;
+PImage letterE_up;
+
 PImage letterE;
+PImage letterG;
+PImage letterB;
+PImage letterD;
+PImage letterF_up;
+
 PImage click;
 PImage tryAgain;
 PImage goodJob;
@@ -21,6 +28,12 @@ AudioPlayer F;
 AudioPlayer A;
 AudioPlayer C;
 AudioPlayer E_up;
+
+AudioPlayer E;
+AudioPlayer G;
+AudioPlayer B;
+AudioPlayer D;
+AudioPlayer F_up;
 
 AudioPlayer right;
 AudioPlayer wrong;
@@ -44,14 +57,20 @@ boolean winState;
 
 void setup(){
   size(840, 600);
-  state = 1;
+  state = 11;
   image = loadImage("music_game_board2.png");
   home = loadImage("MusicBoxHome.jpg");
   background = loadImage("MusicBoxBackground.png");
   letterF = loadImage("LetterF.png");
   letterA = loadImage("LetterA.png");
   letterC = loadImage("LetterC.png");
+  letterE_up = loadImage("LetterE_up.png");
+  
   letterE = loadImage("LetterE.png");
+  letterG = loadImage("LetterG.png");
+  letterB = loadImage("LetterB.png");
+  letterD = loadImage("LetterD.png");
+  letterF_up = loadImage("LetterF_up.png");
   
    click = loadImage("ClickToPlay.png");
    tryAgain = loadImage("tryAgain.png");
@@ -66,6 +85,12 @@ void setup(){
   C = minim.loadFile("C_all.wav", 1024);
   E_up = minim.loadFile("E_up_all.wav", 1024); 
   
+  E = minim.loadFile("E_all.wav", 1024);
+  G = minim.loadFile("G_all.wav", 1024);
+  B = minim.loadFile("B_all.wav", 1024);
+  D = minim.loadFile("D_all.wav", 1024);
+  F_up = minim.loadFile("F_up_all.wav", 1024); 
+  
   right = minim.loadFile("right.mp3");
   wrong = minim.loadFile("wrong.mp3");
   intro = minim.loadFile("piano.wav");
@@ -74,7 +99,7 @@ void setup(){
 
 void draw(){
   
-  
+//STATE 1
   if (state == 1){
     //text("Click to Play", 300, 100);
     image(home, 0, 0);
@@ -87,6 +112,7 @@ void draw(){
     }
   }
   
+//STATE 2
   if (state == 2){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -230,8 +256,7 @@ void draw(){
        } // end of A state 3
    
      
-      
-     //TEST FOR E STATE 4
+//TEST FOR E STATE 4
     if(state == 4){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -310,7 +335,7 @@ void draw(){
        
        
        
-     //STATE 5 C 
+//STATE 5 C 
      if (state == 5){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -392,7 +417,7 @@ void draw(){
          }
     }//END OF GAME STATE 5
       
-     //STATE  6 F
+//STATE  6 F
      if (state == 6){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -477,7 +502,7 @@ void draw(){
     }//END OF GAME STATE 6
 
 
-   //STATE  7 C
+//STATE  7 C
      if (state == 7){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -561,7 +586,7 @@ void draw(){
          }
     }//END OF GAME STATE 7
     
-     //TEST FOR E STATE 8
+//TEST FOR E STATE 8
     if(state == 8){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -639,7 +664,7 @@ void draw(){
          
        } // end of E
        
-     //TEST FOR A STATE 9
+ //TEST FOR A STATE 9
     if(state == 9){
       image(background, 0, 0);
       image(title, 0, -10);
@@ -718,8 +743,179 @@ void draw(){
     
     if (state == 10){
       image(win, 0, 0);
+      if(mousePressed == true){
+      state = 11;
+      timerTest = timer;
+      }
   
     }//end of state 10
+    
+//EGBDF STATE 11
+    if (state == 11){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      //textFont(font, 100);
+      timer++;
+      strokeWeight(4);
+      //each note plays for 80 frames and has 20 frames inbetween each one
+      
+      //GREEN E
+      if (timer - timerTest < 80){
+      fill(31,234,151);
+      ellipse(220,330+15,30,30);
+      E.play();
+     // textSize(100);
+      //text("F", width/2-50, height-50);
+      image(letterE, 0,50);
+      }
+      
+    
+      //LIGHT BLUE G
+      if(timer - timerTest > 100 && timer - timerTest < 180){
+      fill(10,217,239);
+      ellipse(340,298+15,30,30);
+      G.play();
+      //text("A", width/2-50, height-50);
+      image(letterG, 0,50);
+
+      }
+        
+        
+      //DARK BLUE B
+      if(timer - timerTest > 200 && timer - timerTest < 280){
+      fill(43,43,247);
+      ellipse(460,264+15,30,30); 
+      B.play();
+      //text("C", width/2-50, height-50);
+      image(letterB, 0,50);
+
+      }
+        
+      //PURPLE D
+      if(timer - timerTest > 300 && timer - timerTest < 380){
+      fill(224,8,255); //<>//
+      ellipse(580,232+15,30,30);
+      D.play();
+     // text("E", width/2-50, height-50);
+      image(letterD, 0,50);
+
+      }
+      
+       //PINK F UP
+      if(timer - timerTest > 400 && timer - timerTest < 480){
+      fill(255,69,145);
+      ellipse(700,200+15,30,30);
+      F_up.play();
+     // text("E", width/2-50, height-50);
+      image(letterF_up, 0,50);
+
+      }
+      
+      if(timer- timerTest > 500){
+        //text("Click to Play", 300, 100);
+        image(click, 0, 70);
+        if (mousePressed == true){
+          state = 12;
+          test = 0;
+          lose = 0;
+          timerTest = timer;
+          }
+        }
+    
+    
+    }//end of STATE 11
+    
+//STATE 12
+    if(state == 12){
+      image(background, 0, 0);
+      image(title, 0, -10);
+      image(image, 15, 130, 800, 300);
+      fill(255);
+      strokeWeight(4);
+      timer ++;
+      
+      //GREEN E
+      if (mouseX > 205 && mouseX < 235 && mouseY > 330 && mouseY < 360){
+      stroke(31,234,151);
+      }
+      else{
+      stroke(0);
+      }     
+       ellipse(220,345,30,30);
+     
+      //LIGHT BLUE G
+      fill(255);
+      if (mouseX > 325  && mouseX < 355 && mouseY > 298 && mouseY < 328){
+      stroke(10,217,239);
+      }      
+      else{
+      stroke(0);
+      }     
+       ellipse(340,313,30,30);
+      
+      //DARK BLUE B
+      fill(255);
+      if (mouseX > 445  && mouseX < 475 && mouseY > 264 && mouseY < 294){
+      stroke(43,43,247);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(460,279,30,30); 
+        
+      //PURPLE D
+      fill(255);
+      if (mouseX > 565  && mouseX < 595 && mouseY > 232 && mouseY < 262){
+      stroke(224,8,255);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(580,247,30,30);
+      
+       //PINK F
+      fill(255);
+      if (mouseX > 685  && mouseX < 715 && mouseY > 200 && mouseY < 230){
+      stroke(255,69,145);
+      }     
+      else{
+      stroke(0);
+      }
+      ellipse(700,215,30,30);
+        
+    //MUSIC PLAYING FOR G
+    if(timer - timerTest > 20 && winState == false && loseState == false){
+       for(int i =0; i< 160; i= i +80){
+         if(G.isPlaying() == false){
+          G.rewind();
+          G.play();
+           }
+          }
+         }
+         
+     if(winState == true){
+        if(timer - timerTest < 120){
+       image(goodJob, 0, 70);
+       }
+       else{
+         winState = false;
+         state = 10;
+           }
+         }
+         
+      if(loseState == true){
+       if(timer - timerTest < 120){
+       image(tryAgain, 0, 70);
+       }
+       else{
+         loseState = false;
+           }
+         }
+    
+    
+    }
+
 
       println("score" + str(score));
       println("lose" + str(lose));
@@ -729,7 +925,7 @@ void draw(){
 
 
      // fill(0);
-     // text(str(score), 700, 50);
+     // text(str(score), 700, 50); //<>//
 
   }
   
