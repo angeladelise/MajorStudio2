@@ -34,9 +34,8 @@ class Rat{
   
   }
   
-  void ratControl(){
+  void Control(){
   
-     println("here!!");
     if(keyPressed == true){
       if(key == CODED){
         if (keyCode == UP){
@@ -72,7 +71,6 @@ class Rat{
   } //end of ratConrol
   
   void noControl(){
-    println("nope");
     
     location.x = location.x +2;
     location.y = location.y +2;
