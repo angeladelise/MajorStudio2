@@ -73,7 +73,7 @@ class Rat{
   void noControl(){
     
     location.x = location.x +2;
-    location.y = location.y +2;
+   // location.y = location.y +2;
     
       //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
     if (location.x > width -15)

@@ -61,15 +61,27 @@ void draw()
    
      if(words[index] == "rat"){
       rat.Control();
+      p1.noControl();
+      p2.noControl();
+      p3.noControl();
       }
     else if(words[index] == "p1"){
       p1.Control();
+      rat.noControl();
+      p2.noControl();
+      p3.noControl();
       }
     else if(words[index] == "p2"){
       p2.Control();
+      p1.noControl();
+      rat.noControl();
+      p3.noControl();
        }
     else if(words[index] == "p3"){
       p3.Control();
+      p1.noControl();
+      p2.noControl();
+      rat.noControl();
       }
     
     
