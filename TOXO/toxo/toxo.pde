@@ -1,9 +1,6 @@
-int radius = 10, directionX = 1, directionY = 1;
-//float y = 10, x = 10, speed = 3;
-//float rotation = 0;
-//float antiRotate = 0.1;
-float start, stop;
-PImage rat;
+
+Rat rat;
+//PImage rat;
 
 boolean ratControl = true;
 
@@ -11,7 +8,10 @@ boolean ratControl = true;
 float ratX = width/2;
 float ratY = height/2;
 
-PImage parasite;
+//PImage parasite;
+Parasite p1;
+Parasite p2;
+Parasite p3;
 boolean paraControl;
 
 float paraX;
@@ -25,9 +25,15 @@ void setup()
    timer = 0;
    
    frameRate(30);
+   
+   rat = new Rat(500,10);
+   
+   p1 = new Parasite(100, 600);
+   p2 = new Parasite(600, 50);
+   p3 = new Parasite(800,200);
   
-  rat = loadImage("rat.png");
-  parasite = loadImage("parasite.png");
+ // rat = loadImage("rat.png");
+  //parasite = loadImage("parasite.png");
   
  
 }
@@ -38,9 +44,15 @@ void draw()
   background(0);
   timer ++;
   
+  rat.draw();
+  p1.draw();
+  p2.draw();
+  p3.draw();
+  
   if(timer > 60 && timer < 120){
   ratControl = true;
   paraControl = false;
+  //println("rat is in control");
   }
   
   else if(timer > 120 && timer < 180){
@@ -48,92 +60,25 @@ void draw()
   paraControl = true;
   }
   
-  else if(timer > 180 && timer < 240){
-  ratControl = true;
-  paraControl = false;
+  //else if(timer > 180){
+  //ratControl = true;
+  //paraControl = false;
+  //}
+  
+  if(ratControl == true){
+   rat.ratControl();
+  }
+  else{
+   rat.noControl();
   }
   
-
-//RAT PLAYER
-   image(rat, ratX, ratY, 30,85);
-   
-//PARASITE PLAYER
-   image(parasite, paraX, paraY, 50, 60);
-
-
-//EXTERNAL BOUNDARIES FOR RAT
-  if (ratX > width)
-   ratX = width;
-  else if(ratX < 0)
-   ratX = 0;
-  if(ratY < 0)
-   ratY = 0;
-  else if(ratY > height)
-   ratY = height;
-  
-  
-//EXTERNAL BOUNDARIES FOR PARA1
-  if (paraX > width)
-   paraX = width;
-  else if(paraX < 0)
-   paraX = 0;
-  if(paraY < 0)
-   paraY = 0;
-  else if(paraY > height)
-   paraY = height;
-  
+    if(paraControl == true){
+   p1.ratControl();
+  }
+  else{
+   p1.noControl();
+  }
 
 
  
 }//end of draw
-
-
-void keyPressed()
-{
-  if (key == CODED)
-  {
-    if (keyCode == UP)
-    {
-      if (ratControl == true){
-        ratY = ratY - 5;
-      }
-      if(paraControl == true){
-      paraY = paraY - 5;
-      }
-    }
-
-    if (keyCode == DOWN)
-    {
-       if (ratControl == true){
-        ratY = ratY + 5;
-      }
-      if(paraControl == true){
-      paraY = paraY +5;
-      }
-    }
-
-    if (keyCode == LEFT)
-    {
-       if (ratControl == true){
-        ratX = ratX -5;
-      }
-      if(paraControl == true){
-      paraX = paraX -5;
-      }
-    }
-
-    if (keyCode == RIGHT)
-    {
-       if (ratControl == true){
-        ratX = ratX + 5;
-      }
-      if(paraControl == true){
-        paraX = paraX +5;
-      }
-    }
-  
-
-  }
- 
- 
-}//end of keypressed
