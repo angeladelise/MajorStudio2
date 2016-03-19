@@ -25,15 +25,7 @@ class Parasite{
     image(parasite, location.x -25, location.y -30, 50, 60);    
     
 
-     //EXTERNAL BOUNDARIES FOR PARASITE
-    if (location.x > width-15)
-     location.x = width-15;
-    else if(location.x < 15)
-     location.x = 15;
-    if(location.y < 30)
-     location.y = 30;
-    else if(location.y > height-30)
-     location.y = height-30;
+   
   
   } // end of draw
   
@@ -78,7 +70,7 @@ class Parasite{
     location.x = location.x +2;
     //location.y = location.y +2;
     
-      //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
+   //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
     if (location.x > width -15)
      location.x = width -15;
     else if(location.x < 15)
@@ -89,5 +81,14 @@ class Parasite{
      location.y = height -30;
 
   } // end of noControl
+  
+  
+  void dead(){
+    location.x = 1000;
+    location.y = 1000;
+  
+   location.x = location.x +2;
+   location.y = location.y +2;
+  }
 
 }
