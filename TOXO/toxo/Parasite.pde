@@ -23,9 +23,7 @@ class Parasite{
      //locationx and y to be at CENTER of image
 
     image(parasite, location.x -25, location.y -30, 50, 60);    
-    
 
-   
   
   } // end of draw
   
@@ -85,7 +83,7 @@ class Parasite{
   
   void dead(){
     location.x = 1000;
-    location.y = 1000;
+    location.y = 5000;
   
    location.x = location.x +2;
    location.y = location.y +2;

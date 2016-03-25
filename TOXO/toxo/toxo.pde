@@ -180,7 +180,7 @@ void draw()
   
   
 //IF YOU ARE THE RAT & COLLISIONS
-  if(words[index] == "rat"){
+  if(words[index] == "rat" && immune == false){
    if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 40 )
    {
     lives = lives -1;
