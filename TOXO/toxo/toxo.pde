@@ -22,10 +22,10 @@ int random;
 String[] words = {"rat", "rat", "rat", "p1", "p2", "p3" };
 int index;
 
-int lives;
+int lives = 3;
 
 void setup()
-{
+ {
    size (1000, 700);
    timer = 0;
    immuneTimer = 0;
@@ -58,20 +58,15 @@ void draw()
   p3.draw();
   c1.draw();
   
-  //println(timer);
- // println("random" + random);
+  //noFill();
+  //ellipse(rat.xPos, rat.yPos, 30, 30);
   
   if(timer == random){
-    index = int(random(words.length));  // Same as int(random(5))
-    println(words[index]);  // Prints one of the five words
-    
-    //reset timer and new random value
-    timer = 0;
-    random = int(random(30,100));
+    pickPlayer();
    } 
    
-   //CONTROLLING RAT
-     if(words[index] == "rat"){
+ //CONTROLLING RAT
+  if(words[index] == "rat"){
       rat.Control();
       
       //PARASITE IS IN PLAY ONLY IF ITS NOT DEAD
@@ -85,15 +80,67 @@ void draw()
             p3.noControl();
         }
       
-          //colliding with cheese makes immune true
-         if(dist(c1.xPos, c1.yPos, rat.xPos, rat.yPos-5) < 40 )
+    //colliding with cheese makes immune true
+         if(dist(c1.xPos, c1.yPos, rat.xPos, rat.yPos-5) < 45 )
            {
              immune = true;
              c1.xPos = width; 
              c1.yPos = random(100, height - 100);
            }
-      }
+           
+           //WHEN YOU EAT PARASITES
+           if(immune == true){
+             if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {  
+              p1.dead();
+              p1dead = true;
+              println("dead parasite!");
+              }
+              if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {
+              p2.dead();
+              p2dead = true;
+              println("dead parasite!");
+              }
+              if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {
+              p3.dead();
+              p3dead = true;
+              println("dead parasite!");
+              }
+           }
+           
+           //WHEN PARASITES GET YOU
+            if(immune == false){
+                
+              if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+                 {
+                lives = lives -1;             
+                p1.newPosition();
+                }
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;              
+                p2.newPosition();
+                }
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;                
+                p3.newPosition();
+                }
+  
+            }
+            
+            if(lives == 0){
+              text("You Lose!", 300,300);
+            }
+            
+            if(p1dead == true && p2dead == true && p3dead == true){
+              text("You Win!", 300,300);
+            }
+      } //END OF RAT PLAYER
       
+ //P1 CONTROL
  //ONLY CAN CONTROL PARASITE ITS NOT DEAD
     else if(words[index] == "p1"){
       p1.Control();
@@ -105,12 +152,31 @@ void draw()
             p3.noControl();
         }
         
-   //IF PARASITE THAT IS CHOOSEN IS DEAD, CANT CONTROL IT AND PICKS AGAIN
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+                 {
+                lives = lives -1;             
+                p1.newPosition();
+                }
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;              
+                p2.newPosition();
+                }
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;                
+                p3.newPosition();
+                }
+        
+   //IF PARASITE THAT IS CHOOSEN IS DEAD, CANT CONTROL IT AND PICKS PLAYER AGAIN
    //OVERWRITES RANDOM TIMER
         if(p1dead == true){
             p1.dead();
+            pickPlayer();
         }
       }
+
+//P2 CONTROL
     else if(words[index] == "p2"){
       p2.Control();
       rat.noControl();
@@ -120,7 +186,28 @@ void draw()
         if(p3dead == false){
             p3.noControl();
         }
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+                 {
+                lives = lives -1;             
+                p1.newPosition();
+                }
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;              
+                p2.newPosition();
+                }
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;                
+                p3.newPosition();
+                }
+        if(p2dead == true){
+            p2.dead();
+            pickPlayer();
+        }
        }
+      
+//P3 CONTROL
     else if(words[index] == "p3"){
       p3.Control();
       rat.noControl();
@@ -130,6 +217,25 @@ void draw()
         }
         if(p2dead == false){
             p2.noControl();
+        }
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+                 {
+                lives = lives -1;             
+                p1.newPosition();
+                }
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;              
+                p2.newPosition();
+                }
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                lives = lives -1;                
+                p3.newPosition();
+                }
+        if(p3dead == true){
+            p3.dead();
+            pickPlayer();
         }
       }
     
@@ -145,70 +251,42 @@ void draw()
       }
     } //IMMUNE
     
-    //COLLISIONS
+//IF IMMUNE IS TRUE EVEN WHEN RATS ARE IN CONTROL
+           if(immune == true){
+             if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {  
+              p1.dead();
+              p1dead = true;
+              println("dead parasite!");
+              }
+              if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {
+              p2.dead();
+              p2dead = true;
+              println("dead parasite!");
+              }
+              if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+             {
+              p3.dead();
+              p3dead = true;
+              println("dead parasite!");
+              }
+           }
     
-   //stroke(0,0,255);
-   //line(p1.xPos, p1.yPos, rat.xPos, rat.yPos);
-   //line(p2.xPos, p2.yPos, rat.xPos, rat.yPos);
-   //line(p3.xPos, p3.yPos, rat.xPos, rat.yPos);
 
-   //noFill();
-   //ellipse(rat.xPos, rat.yPos-5, 40, 40);
-  
-  
-//IF YOU ARE THE RAT & IMMUNE
-  if(words[index] == "rat" && immune == true){
-   if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {  
-    p1.dead();
-    p1dead = true;
-    println("dead parasite!");
-    }
-    if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {
-    p2.dead();
-    p2dead = true;
-    println("dead parasite!");
-    }
-    if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {
-    p3.dead();
-    p3dead = true;
-    println("dead parasite!");
-    }
-  } //end of RAT IMMUNE
-  
-  
-//IF YOU ARE THE RAT & COLLISIONS
-  if(words[index] == "rat" && immune == false){
-   if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {
-    lives = lives -1;
-    
-    p1.yPos = 0;
-    p1.xPos = 0;
-    }
-    if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {
-    lives = lives -1;
-    
-    p2.yPos = 0;
-    p2.xPos = 0;
-    }
-    if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 40 )
-   {
-    lives = lives -1;
-    
-    p3.yPos = 0;
-    p3.xPos = 0;
-    }
-  } //end of RAT COLLISIONS
-  
-
-    
-  
-  
-
-
+   
  
 }//end of draw
+
+
+void pickPlayer(){
+  
+    index = int(random(words.length));  // Same as int(random(5))
+    println(words[index]);  // Prints one of the five words
+    
+    //reset timer and new random value
+    timer = 0;
+    random = int(random(30,100));
+
+
+}

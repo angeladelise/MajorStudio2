@@ -88,5 +88,11 @@ class Parasite{
    location.x = location.x +2;
    location.y = location.y +2;
   }
+  
+  void newPosition(){
+    location.x = random(0, width);
+    location.y = random(0, height);
+  
+  }
 
 }
