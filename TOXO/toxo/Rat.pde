@@ -80,7 +80,25 @@ class Rat{
   
 //NO CONTROL  
   void noControl(){
-   
+   //IF IMMUNE IS FALSE THEN GO AFTER CHEESE
+   if (immune == false){
+         if(c1.xPos> location.x){
+         location.x = location.x+ 2;
+       }
+       else if(c1.xPos <location.x){
+         location.x = location.x- 2;
+       }
+       //if the x position is correct then go after the y
+       else if(abs(location.x - c1.xPos) <= 5){
+           if(c1.yPos> location.y){
+           location.y = location.y+ 2;
+           }
+         else if(c1.yPos <location.y){
+           location.y = location.y- 2;
+         }
+       }//end of CHEESE
+    
+   } // end of iMMUNE FALSE
    
    //if immune is true then go after parasites
    //go after which one is the closest
@@ -116,7 +134,7 @@ class Rat{
            }
          else if(p2.yPos <location.y){
            location.y = location.y- 2;
-           }
+           } 
          
            }//end of abs
          if(p2.xPos> location.x){
@@ -153,25 +171,7 @@ class Rat{
  
    } // end of iMMUNE TRUE
    
- //IF IMMUNE IS FALSE THEN GO AFTER CHEESE
-   if (immune == false){
-         if(c1.xPos> location.x){
-         location.x = location.x+ 2;
-       }
-       else if(c1.xPos <location.x){
-         location.x = location.x- 2;
-       }
-       //if the x position is correct then go after the y
-       else if(abs(location.x - c1.xPos) <= 5){
-           if(c1.yPos> location.y){
-           location.y = location.y+ 2;
-           }
-         else if(c1.yPos <location.y){
-           location.y = location.y- 2;
-         }
-       }//end of CHEESE
-    
-   } // end of iMMUNE FALSE
+ 
  
     
       //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
