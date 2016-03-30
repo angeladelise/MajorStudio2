@@ -105,6 +105,8 @@ class Rat{
    //if immune is true then go after parasites
    //go after which one is the closest
    if (immune == true){
+     fill(0,250,0);
+     ellipse(50,50,100,100);
      //if distance to parasite 1 is less than parasite 2
      if(dist(p1.xPos, p1.yPos, location.x, location.y) < dist(p2.xPos, p2.yPos, location.x, location.y)){
        if(dist(p1.xPos, p1.yPos, location.x, location.y) < dist(p3.xPos, p3.yPos, location.x, location.y)){
