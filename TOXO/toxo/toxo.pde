@@ -38,7 +38,7 @@ void setup()
    p2 = new Parasite(600, 50);
    p3 = new Parasite(800,200);
    
-   c1 = new Cheese(1000,400);
+   c1 = new Cheese(900,400);
    
    //pick a random number to change player
    random = int(random(30,100));
@@ -275,7 +275,13 @@ void draw()
            }
     
 
-   
+    //colliding with cheese makes immune true
+         if(dist(c1.xPos, c1.yPos, rat.xPos, rat.yPos-5) < 45 )
+           {
+             immune = true;
+             c1.xPos = width; 
+             c1.yPos = random(100, height - 100);
+           }
  
 }//end of draw
 
