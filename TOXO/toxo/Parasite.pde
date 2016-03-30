@@ -28,6 +28,9 @@ class Parasite{
   } // end of draw
   
   void Control(){
+    tint(255, 150);
+    image(parasite, 50, 100, 100, 120); 
+    tint(255,255);
     
      if(keyPressed == true){
       if(key == CODED){

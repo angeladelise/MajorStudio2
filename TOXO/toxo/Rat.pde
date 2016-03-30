@@ -42,7 +42,10 @@ class Rat{
   }
   
   void Control(){
-  
+    tint(255, 150);
+    image(rat, 50, 80, 80, 120); 
+    tint(255,255);
+    
     if(keyPressed == true){
       if(key == CODED){
         if (keyCode == UP){
