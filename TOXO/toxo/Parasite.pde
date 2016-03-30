@@ -68,8 +68,25 @@ class Parasite{
   
   void noControl(){
     
-    location.x = location.x +2;
-    //location.y = location.y +2;
+ //IF IMMUNE IS FALSE
+ if(immune == false){
+  //follows rat
+    if(abs(location.x-rat.xPos) <= 5){
+      if(rat.yPos> location.y){
+           location.y = location.y+ 2;
+           }
+       else if(rat.yPos <location.y){
+           location.y = location.y- 2;
+           }     
+         }// end of abs value
+       else if(rat.xPos> location.x){
+        location.x = location.x+ 2;
+       }
+       else if(rat.xPos <location.x){
+         location.x = location.x- 2;
+       } 
+      
+ }// end of immune is false
     
    //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
     if (location.x > width -15)
