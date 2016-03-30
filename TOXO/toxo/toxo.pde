@@ -32,7 +32,7 @@ void setup()
    
    frameRate(30);
    
-   rat = new Rat(500,10);
+   rat = new Rat(1000,400);
    
    p1 = new Parasite(100, 600);
    p2 = new Parasite(600, 50);
@@ -152,6 +152,7 @@ void draw()
             p3.noControl();
         }
         
+ 
         if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
                  {
                 lives = lives -1;             
@@ -251,7 +252,7 @@ void draw()
       }
     } //IMMUNE
     
-//IF IMMUNE IS TRUE EVEN WHEN RATS ARE IN CONTROL
+//IF IMMUNE IS TRUE EVEN WHEN PARASITES ARE IN CONTROL
            if(immune == true){
              if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
              {  
