@@ -82,7 +82,9 @@ class Rat{
   void noControl(){
    //IF IMMUNE IS FALSE THEN GO AFTER CHEESE
    if (immune == false){
-         if(c1.xPos> location.x){
+     fill(255,0,0);
+     ellipse(50,50,100,100);
+       if(c1.xPos> location.x){
          location.x = location.x+ 2;
        }
        else if(c1.xPos <location.x){

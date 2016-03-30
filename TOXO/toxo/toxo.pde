@@ -19,7 +19,7 @@ int timer;
 int random;
 
 // Get a random element from an array
-String[] words = {"rat", "rat", "rat", "p1", "p2", "p3" };
+String[] words = {"rat", "rat", "p1", "p2", "p3" };
 int index;
 
 int lives = 3;
@@ -84,7 +84,7 @@ void draw()
          if(dist(c1.xPos, c1.yPos, rat.xPos, rat.yPos-5) < 45 )
            {
              immune = true;
-             c1.xPos = width; 
+             c1.xPos = width-100; 
              c1.yPos = random(100, height - 100);
            }
            
@@ -153,17 +153,17 @@ void draw()
         }
         
  
-        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                  {
                 lives = lives -1;             
                 p1.newPosition();
                 }
-                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;              
                 p2.newPosition();
                 }
-                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;                
                 p3.newPosition();
@@ -187,17 +187,17 @@ void draw()
         if(p3dead == false){
             p3.noControl();
         }
-        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                  {
                 lives = lives -1;             
                 p1.newPosition();
                 }
-                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;              
                 p2.newPosition();
                 }
-                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;                
                 p3.newPosition();
@@ -219,17 +219,17 @@ void draw()
         if(p2dead == false){
             p2.noControl();
         }
-        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+        if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                  {
                 lives = lives -1;             
                 p1.newPosition();
                 }
-                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;              
                 p2.newPosition();
                 }
-                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 & immune == false)
                 {
                 lives = lives -1;                
                 p3.newPosition();
