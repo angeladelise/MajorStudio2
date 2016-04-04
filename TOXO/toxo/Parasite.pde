@@ -72,7 +72,7 @@ class Parasite{
  if(immune == false){
   //follows rat
   fill(255,255,0);
-  ellipse(50,50,200,100);
+  //ellipse(50,50,200,100);
     if(abs(location.x-rat.xPos) <= 5){
       if(rat.yPos> location.y){
            location.y = location.y+ 2;

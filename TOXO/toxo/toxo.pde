@@ -30,6 +30,7 @@ PImage home;
 PImage instr1;
 PImage instr2;
 
+int homeTimer = 0;
 void setup()
  {
    size (1000, 700);
@@ -75,10 +76,10 @@ void draw()
   
   if(state == 2){
    image(instr1, 0, 0);
-   timer ++;
-    if(mousePressed && timer > 30){
+   homeTimer ++;
+    if(mousePressed && homeTimer > 30){
       state = 3;  
-      timer = 0;
+      homeTimer = 0;
       }
   
   }//end of state2
@@ -88,8 +89,8 @@ void draw()
   
   if(state == 3){
    image(instr2, 0, 0);
-   timer ++;
-    if(mousePressed && timer > 30){
+   homeTimer ++;
+    if(mousePressed && homeTimer > 30){
       state = 4;  
       }
   
@@ -97,6 +98,9 @@ void draw()
   
 //STATE 4 IS GAMEPLAY
  if(state == 4){
+   
+   timer ++;
+   
   rat.draw();
   p1.draw();
   p2.draw();
