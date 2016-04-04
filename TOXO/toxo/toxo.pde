@@ -24,6 +24,12 @@ int index;
 
 int lives = 3;
 
+int state;
+
+PImage home;
+PImage instr1;
+PImage instr2;
+
 void setup()
  {
    size (1000, 700);
@@ -43,6 +49,10 @@ void setup()
    //pick a random number to change player
    random = int(random(30,100));
 
+   state = 1;
+   home = loadImage("toxoHome.png");
+   instr1 = loadImage("toxoInstr1.png");
+   instr2 = loadImage("toxoInstr2.png");
   
 }
 
@@ -50,8 +60,43 @@ void setup()
 void draw()
 {
   background(0);
-  timer ++;
+
+//HOME SCREEN
+  if(state == 1){
+  image(home, 0, 0);
   
+//reset timer
+  timer =0;
+    if(mousePressed){
+      state = 2;  
+      }
+  
+  }//end of state1
+  
+  if(state == 2){
+   image(instr1, 0, 0);
+   timer ++;
+    if(mousePressed && timer > 30){
+      state = 3;  
+      timer = 0;
+      }
+  
+  }//end of state2
+  
+  println(state);
+  //timer ++;
+  
+  if(state == 3){
+   image(instr2, 0, 0);
+   timer ++;
+    if(mousePressed && timer > 30){
+      state = 4;  
+      }
+  
+  }//end of state3
+  
+//STATE 4 IS GAMEPLAY
+ if(state == 4){
   rat.draw();
   p1.draw();
   p2.draw();
@@ -282,6 +327,8 @@ void draw()
              c1.xPos = width; 
              c1.yPos = random(100, height - 100);
            }
+           
+   }//end of state 4
  
 }//end of draw
 
