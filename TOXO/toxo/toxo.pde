@@ -61,6 +61,9 @@ void setup()
 void draw()
 {
   background(0);
+  
+  textSize(30);
+  text("You are Playing", 50,50);
 
 //HOME SCREEN
   if(state == 1){
@@ -289,7 +292,7 @@ void draw()
         }
       }
     
-    text("Lives: " + lives, width -100, 30);
+    text("Lives: " + lives, width -300, 30);
     
     if(immune == true){
       immuneTimer ++;

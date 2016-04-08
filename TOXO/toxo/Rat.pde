@@ -3,6 +3,7 @@ class Rat{
   float yPos;
   PImage rat; 
   PImage rathealth;
+  PImage ratBlue;
   PVector location; 
 
   
@@ -15,6 +16,7 @@ class Rat{
    
    rat = loadImage("rat.png");
    rathealth = loadImage("rathealth.png");
+   ratBlue = loadImage("ratBlue.png");
  }
   
   void draw(){
