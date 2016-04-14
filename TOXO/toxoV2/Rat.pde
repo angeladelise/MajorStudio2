@@ -4,6 +4,7 @@ class Rat{
   PImage rat; 
   PImage rathealth;
   PImage ratBlue;
+  PImage ratInfected;
   PVector location; 
 
   
@@ -17,6 +18,7 @@ class Rat{
    rat = loadImage("rat.png");
    rathealth = loadImage("rathealth.png");
    ratBlue = loadImage("ratBlue.png");
+   ratInfected = loadImage("ratInfected.png");
  }
   
   void draw(){
@@ -147,7 +149,7 @@ class Rat{
  
 //cant control body  
     void zombieControl(){
-    image(ratBlue, location.x-50, location.y-35, 92, 80);
+    image(ratInfected, location.x-50, location.y-35, 92, 80);
     fill(0,255,0);
     ellipse (50,50,50,50);
     

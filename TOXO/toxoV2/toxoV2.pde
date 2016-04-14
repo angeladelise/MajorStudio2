@@ -227,29 +227,8 @@ void draw()
                 else{
                 rat.slowControl();
                 
-                   ////RAT FREEZE                       
-                  //if(ratFreeze == true){
-  
-                   //if(timeClock >= stopClock - 5){
-                   //  rat.noControl();
-                   // }
-                   //else{
-                   //ratFreeze = false;
-                   //  }
-                   //}//ratFreeze boolean
                 }
                 
-    
-    //RAT FREEZE                       
-                  //if(ratFreeze == true){
-  
-                  //  if(timeClock >= stopClock - 3){
-                  //    rat.noControl();
-                  //   }
-                  //  else{
-                  //  ratFreeze = false;
-                  //    }
-                  //  }//ratFreeze boolean
                   
     //RAT FREEZE
     if(ratFreeze == true){
