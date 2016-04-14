@@ -25,6 +25,9 @@ String displayClock;
 int stopClock;
 boolean ratFreeze;
 
+int freezeTimer;
+int hitTimer;
+
 int score;
 
 int random;
@@ -172,7 +175,11 @@ void draw()
   line(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5);
   
   //RAT IS IN FULL CONTROL WHEN AWAY FROM ALL PARASITES
-             if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) > 150 
+            if(ratFreeze == true){
+                rat.noControl();
+                }
+  
+             else if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) > 150 
              && (dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) > 150 ) 
              && (dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) > 150 ))
              {  
@@ -186,6 +193,7 @@ void draw()
                 lives = lives -1;             
                 p1.newPosition();             
                 ratFreeze = true;
+                hitTimer = hitTimer + 90;
                 }
                else if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
                 {
@@ -193,6 +201,7 @@ void draw()
                 lives = lives -1;              
                 p2.newPosition();               
                 ratFreeze = true;
+                hitTimer = hitTimer + 90;
                 }
                 else if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
                 {
@@ -200,38 +209,77 @@ void draw()
                 lives = lives -1;                
                 p3.newPosition();               
                 ratFreeze = true;
+                hitTimer = hitTimer + 90;
                 }  
-                
-                else if(ratFreeze == true){
-                rat.noControl();
-                }
-              
+                            
                 else{
                 rat.slowControl();
                 
-                   //RAT FREEZE                       
-                  if(ratFreeze == true){
+                   ////RAT FREEZE                       
+                  //if(ratFreeze == true){
   
-                    if(timeClock >= stopClock - 5){
-                      rat.noControl();
-                     }
-                    else{
-                    ratFreeze = false;
-                      }
-                    }//ratFreeze boolean
+                   //if(timeClock >= stopClock - 5){
+                   //  rat.noControl();
+                   // }
+                   //else{
+                   //ratFreeze = false;
+                   //  }
+                   //}//ratFreeze boolean
                 }
                 
     
     //RAT FREEZE                       
-                  if(ratFreeze == true){
+                  //if(ratFreeze == true){
   
-                    if(timeClock >= stopClock - 3){
-                      rat.noControl();
-                     }
-                    else{
-                    ratFreeze = false;
-                      }
-                    }//ratFreeze boolean
+                  //  if(timeClock >= stopClock - 3){
+                  //    rat.noControl();
+                  //   }
+                  //  else{
+                  //  ratFreeze = false;
+                  //    }
+                  //  }//ratFreeze boolean
+                  
+    //RAT FREEZE
+    if(ratFreeze == true){
+      freezeTimer ++;
+      if(freezeTimer > 0 && freezeTimer < hitTimer){
+        rat.zombieControl();
+        ellipse (50, height- 150, 50, 50);
+        text(freezeTimer, 50, height -100);
+        text(hitTimer, 50, height -200);
+        
+         if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
+                 {
+                stopClock = timeClock;
+                lives = lives -1;             
+                p1.newPosition();             
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                }
+         else if(dist(p2.xPos, p2.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;              
+                p2.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                }
+         else if(dist(p3.xPos, p3.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;                
+                p3.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                }        
+        
+      }
+      else{
+        freezeTimer = 0;
+        hitTimer = 0;
+        ratFreeze = false;
+      }
+    }
               
                
   text("stopClock" + str(stopClock), width/2, height/2);

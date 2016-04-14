@@ -143,6 +143,31 @@ class Rat{
       }
     } //end of keypressed
     
-  }
-
+  }//end of nocontrol
+ 
+//cant control body  
+    void zombieControl(){
+    image(ratBlue, location.x-50, location.y-35, 92, 80);
+    fill(0,255,0);
+    ellipse (50,50,50,50);
+    
+     if(keyPressed == true){
+      if(key == CODED){
+        if (keyCode == UP){
+          location.x = location.x + 3;
+        }
+        if (keyCode == DOWN){
+          location.x = location.x - 3;
+        }
+        if (keyCode == LEFT){
+          location.y = location.y - 3;
+        }
+        if (keyCode == RIGHT){
+          location.y = location.y + 3;
+        }
+      }
+    } //end of keypressed
+    
+  }//end of nocontrol
+  
 }
