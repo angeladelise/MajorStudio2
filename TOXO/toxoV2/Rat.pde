@@ -149,7 +149,7 @@ class Rat{
  
 //cant control body  
     void zombieControl(){
-    image(ratInfected, location.x-50, location.y-35, 92, 80);
+    image(rathealth, location.x-50, location.y-35, 92, 80);
     fill(0,255,0);
     ellipse (50,50,50,50);
     
