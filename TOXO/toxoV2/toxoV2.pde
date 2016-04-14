@@ -201,6 +201,10 @@ void draw()
                 p3.newPosition();               
                 ratFreeze = true;
                 }  
+                
+                else if(ratFreeze == true){
+                rat.noControl();
+                }
               
                 else{
                 rat.slowControl();
@@ -216,13 +220,25 @@ void draw()
                       }
                     }//ratFreeze boolean
                 }
+                
+    
+    //RAT FREEZE                       
+                  if(ratFreeze == true){
+  
+                    if(timeClock >= stopClock - 3){
+                      rat.noControl();
+                     }
+                    else{
+                    ratFreeze = false;
+                      }
+                    }//ratFreeze boolean
               
                
   text("stopClock" + str(stopClock), width/2, height/2);
   text("timeClock" + str(timeClock), width/2 - 100, height/2- 100);
 
-              //<>//
-    //colliding with cheese increases score & takes cheese out of play
+             
+    //colliding with cheese increases score & takes cheese out of play //<>//
          if(dist(c1.xPos, c1.yPos, rat.xPos, rat.yPos-5) < 45 )
            {
              c1.dead();
