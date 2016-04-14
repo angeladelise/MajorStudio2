@@ -43,6 +43,7 @@ int state;
 PImage home;
 PImage instr1;
 PImage instr2;
+PImage instr3;
 
 int homeTimer = 0;
 
@@ -74,6 +75,7 @@ void setup()
    home = loadImage("toxoHome.png");
    instr1 = loadImage("toxoInstr1.png");
    instr2 = loadImage("toxoInstr2.png");
+   instr3 = loadImage("toxoInstr3.png");
   
 }
 
@@ -114,12 +116,22 @@ void draw()
    homeTimer ++;
     if(mousePressed && homeTimer > 15){
       state = 4;  
+      homeTimer = 0;
       }
   
   }//end of state3
   
-//STATE 4 IS GAMEPLAY
- if(state == 4){   
+  if(state == 4){
+   image(instr3, 0, 0);
+   homeTimer ++;
+    if(mousePressed && homeTimer > 15){
+      state = 5;  
+      }
+  
+  }//end of state 4
+  
+//STATE 5 IS GAMEPLAY
+ if(state == 5){   
    
    text("Score: " + score, width -300, 30);
     
@@ -171,8 +183,8 @@ void draw()
   
   stroke(255,0,0);
   noFill();
-  ellipse(p1.xPos, p1.yPos, 150,150);
-  line(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5);
+  //ellipse(p1.xPos, p1.yPos, 150,150);
+  //line(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5);
   
   //RAT IS IN FULL CONTROL WHEN AWAY FROM ALL PARASITES
             if(ratFreeze == true){
@@ -282,8 +294,8 @@ void draw()
     }
               
                
-  text("stopClock" + str(stopClock), width/2, height/2);
-  text("timeClock" + str(timeClock), width/2 - 100, height/2- 100);
+  //text("stopClock" + str(stopClock), width/2, height/2);
+  //text("timeClock" + str(timeClock), width/2 - 100, height/2- 100);
 
              
     //colliding with cheese increases score & takes cheese out of play //<>//
@@ -314,7 +326,7 @@ void draw()
            }
 
            
-   }//end of state 4
+   }//end of state 5
  
 }//end of draw
 
