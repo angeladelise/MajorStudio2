@@ -47,6 +47,9 @@ PImage instr3;
 
 int homeTimer = 0;
 
+int mazeX;
+int mazeY;
+
 void setup()
  {
    size (1000, 700);
@@ -56,7 +59,7 @@ void setup()
    
    frameRate(30);
    
-   rat = new Rat(1000,400);
+   rat = new Rat(0,400);
    
    p1 = new Parasite(100, 600);
    p2 = new Parasite(600, 50);
@@ -132,6 +135,76 @@ void draw()
   
 //STATE 5 IS GAMEPLAY
  if(state == 5){   
+ 
+  println(mouseX, mouseY);
+   rat.collide();
+   p1.collide();
+   p2.collide();
+   p3.collide();
+   c1.collide();
+   
+//MAZE LAYOUT
+   noFill();
+   stroke(255);
+   
+//HORIZONTAL RECTANGLES
+   //for(int i = 0; i < height; i ++){
+   //  if(i % 300 == 0){
+   //    rect(0, i+60, 180, 30);
+   //    rect(width-180, i+60, 180, 30);
+      
+   //  }
+   //}
+   
+   rect(0, 0+60, 180, 30);
+   rect(width-180, 0+60, 180, 30);
+   
+   rect(0, 300+60, 180, 30);
+   rect(width-180, 300+60, 180, 30);
+   
+   rect(0, 600+60, 180, 30);
+   rect(width-180, 600+60, 180, 30);
+   
+//VERTICAL RECTANGLES
+for(int i = 200; i < width - 200; i ++){
+     if(i % 300 == 0){
+       rect(i+40, 0, 30, 200);
+       rect(i+40, height-180, 30, 200);
+     }
+   }
+   
+//SMALLER HORIZONTAL BOXES
+ for(int i = 10; i < height - 150; i ++){
+     if(i % 150 == 0 && i != 300){
+       rect(100, i+30, 150, 30);
+      rect(width-250, i+30, 150, 30);
+     }
+   }
+   
+//SMALLER VERT BOXES
+for(int i = 300; i < width - 200; i ++){
+     if(i % 450 == 0){
+       rect(i+40, 120, 30, 150);
+       rect(i+40, height-300, 30, 150);
+     }
+   }
+   
+//SMALLER HORIZONTAL MIDDLE
+ for(int i = 300; i < height - 300; i ++){
+     if(i % 300 == 0){
+       rect(250, i, 150, 30);
+       rect(width-400, i, 150, 30);
+     }
+   }
+   
+   
+//RAT COLLIDING WITH MAZE
+if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
+  rat.xPos = 0;
+  rat.yPos = 90;
+}
+
+
    
    text("Score: " + score, width -300, 30);
     
@@ -235,9 +308,9 @@ void draw()
       freezeTimer ++;
       if(freezeTimer > 0 && freezeTimer < hitTimer){
         rat.zombieControl();
-        ellipse (50, height- 150, 50, 50);
-        text(freezeTimer, 50, height -100);
-        text(hitTimer, 50, height -200);
+        //ellipse (50, height- 150, 50, 50);
+        //text(freezeTimer, 50, height -100);
+        //text(hitTimer, 50, height -200);
         
          if(dist(p1.xPos, p1.yPos, rat.xPos, rat.yPos-5) < 30 )
                  {
@@ -332,5 +405,14 @@ void ratFreezes(){
    else{
     rat.Control();
    }
+
+}
+
+
+void collision(int x, int y, float ratxPos, float ratyPos){
+  ratxPos = rat.xPos;
+  ratyPos = rat.yPos;
+  
+  
 
 }
