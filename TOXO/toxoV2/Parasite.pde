@@ -37,7 +37,6 @@ class Parasite{
         if (keyCode == UP){
           location.y = location.y -5;
           yPos = yPos - 5;
-          println("rat");
         }
         if (keyCode == DOWN){
           yPos = yPos + 5;
@@ -123,23 +122,29 @@ class Parasite{
    if (location.x >= width-180 && location.x <= width){
      if(location.y > 60-15 && location.y < 80-15){
      location.y = 60-15;
+     location.x = location.x- 2;
      }
      else if(location.y >= 60 && location.y < 90+30){
      location.y = 90+30;
+     location.x = location.x- 2;
      }
      
      else if(location.y > 360-15 && location.y < 380-15){
      location.y = 360-15;
+     location.x = location.x- 2;
      }
      else if(location.y >= 360 && location.y < 390+30){
      location.y = 390+30;
+     location.x = location.x- 2;
      }
      
      else if(location.y > 660-15 && location.y < 680-15){
      location.y = 660-15;
+     location.x = location.x- 2;
      }
      else if(location.y >= 660 && location.y < 690+30){
      location.y = 690+30;
+     location.x = location.x- 2;
      }
    }//end hori rects RIGHT side
    
@@ -182,20 +187,20 @@ class Parasite{
     if (location.x >= 100 && location.x <= 250){
      if(location.y > 180-15 && location.y < 210-15){
      location.y = 180-15;
-     location.x = location.x- 2;
+     location.x = location.x+ 2;
      }
      else if(location.y >= 180 && location.y < 210+30){
      location.y = 210+30;
-     location.x = location.x- 2;
+     location.x = location.x+ 2;
      }
      
      if(location.y > 480-15 && location.y < 510-15){
      location.y = 480-15;
-     location.x = location.x- 2;
+     location.x = location.x+ 2;
      }
      else if(location.y >= 480 && location.y < 510+30){
      location.y = 510+30;
-     location.x = location.x- 2;
+     location.x = location.x+ 2;
      } 
      
    }//end hori rects LEFT SIDE
