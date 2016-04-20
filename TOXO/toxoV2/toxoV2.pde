@@ -77,7 +77,7 @@ void setup()
    c4 = new Cheese(random(50, width-50),random(50, height- 50));
    c5 = new Cheese(random(50, width-50),random(50, height- 50));
    
-   cat = new Cat(1000,1000);
+   cat = new Cat(width/2,1000);
    catCollide = false;
    
    //pick a random number to change player
@@ -260,7 +260,8 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
     p2.noControl();
     p3.noControl();
     
-    cat.followRat();
+    //cat.followRat();
+    cat.wander();
   
   stroke(255,0,0);
   noFill();

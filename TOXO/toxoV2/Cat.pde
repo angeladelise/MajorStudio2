@@ -38,6 +38,23 @@ class Cat{
   
   } //end follow Rat
   
+ 
+ void wander(){
+    location.x = location.x -4;
+    location.y = location.y -4;
+ 
+//EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
+  if (location.x > width -15)
+   location.x = width -15;
+  else if(location.x < 15)
+   location.x = 15;
+  if(location.y < 30)
+   location.y = 30;
+  else if(location.y > height -30)
+   location.y = height -30;
+  
+  } //end wander
+  
 
 void collide(){
   
@@ -45,58 +62,65 @@ void collide(){
    if (location.x >= width-180 && location.x <= width){
      if(location.y > 60-15 && location.y < 80-15){
      location.y = 60-15;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 60 && location.y < 90+30){
      location.y = 90+30;
+     location.x = location.x+ 4;
+     location.y = location.y+ 4;
      }
      
      else if(location.y > 360-15 && location.y < 380-15){
      location.y = 360-15;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 360 && location.y < 390+30){
      location.y = 390+30;
+     location.x = location.x+ 4;
      }
      
      else if(location.y > 660-15 && location.y < 680-15){
      location.y = 660-15;
+     location.x = location.x+4;
      }
      else if(location.y >= 660 && location.y < 690+30){
      location.y = 690+30;
+     location.x = location.x+ 4;
      }
    }//end hori rects RIGHT side
    
    if(location.y > 60 && location.y <90 && location.x <= 180){
      location.x = 180;
-   
+     location.y = location.y +4;
    }
    
 //HORIZONTAL RECTANGLES LEFT SIDE
    if (location.x >= 0 && location.x <= 180){
      if(location.y > 60-15 && location.y < 80-15){
      location.y = 60-15;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 60 && location.y < 90+30){
      location.y = 90+30;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
      
      else if(location.y > 360-15 && location.y < 380-15){
      location.y = 360-15;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 360 && location.y < 390+30){
      location.y = 390+30;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
      
      else if(location.y > 660-15 && location.y < 680-15){
      location.y = 660-15;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 660 && location.y < 690+30){
      location.y = 690+30;
-     location.x = location.x+ 2;
+     location.x = location.x+ 4;
      }
    }//end hori rects LEFT SIDE
    
@@ -104,20 +128,20 @@ void collide(){
     if (location.x >= 100 && location.x <= 250){
      if(location.y > 180-15 && location.y < 210-15){
      location.y = 180-15;
-     location.x = location.x- 2;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 180 && location.y < 210+30){
      location.y = 210+30;
-     location.x = location.x- 2;
+     location.x = location.x+ 4;
      }
      
      if(location.y > 480-15 && location.y < 510-15){
      location.y = 480-15;
-     location.x = location.x- 2;
+     location.x = location.x+ 4;
      }
      else if(location.y >= 480 && location.y < 510+30){
      location.y = 510+30;
-     location.x = location.x- 2;
+     location.x = location.x+ 4;
      } 
      
    }//end hori rects LEFT SIDE
@@ -126,20 +150,20 @@ void collide(){
     if (location.x >= 750 && location.x <= 900){
      if(location.y > 180-15 && location.y < 210-15){
      location.y = 180-15;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      else if(location.y >= 180 && location.y < 210+30){
      location.y = 210+30;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      
      if(location.y > 480-15 && location.y < 510-15){
      location.y = 480-15;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      else if(location.y >= 480 && location.y < 510+30){
      location.y = 510+30;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      } 
      
    }//end hori rects RIGHT SIDE SMALL
@@ -148,11 +172,11 @@ void collide(){
     if (location.x >= 250 && location.x <= 400){
      if(location.y > 300-15 && location.y < 330-15){
      location.y = 300-15;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      else if(location.y >= 300 && location.y < 330+30){
      location.y = 330+30;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      
      
@@ -161,11 +185,11 @@ void collide(){
     if (location.x >= 600 && location.x <= 750){
      if(location.y > 300-15 && location.y < 330-15){
      location.y = 300-15;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      else if(location.y >= 300 && location.y < 330+30){
      location.y = 330+30;
-     location.x = location.x- 2;
+     location.x = location.x- 4;
      }
      
    }//end hori rects SMALL MIDDLE
@@ -174,11 +198,11 @@ void collide(){
    if (location.y >= 0 && location.y <= 200){
      if(location.x > 340-15 && location.x < 370-15){
      location.x = 340-15;
-     location.y = location.y -4;
+     location.y = location.y +4;
      }
      else if(location.x >= 330 && location.x < 370+15){
      location.x = 370+15;
-     location.y = location.y -4;
+     location.y = location.y +4;
      }
      
    }//end VERTICAL RECTANGLE LEFT TOP
@@ -187,11 +211,11 @@ void collide(){
    if (location.y >= 0 && location.y <= 200){
      if(location.x > 640-15 && location.x < 670-15){
      location.x = 640-15;
-     location.y = location.y -4;
+     location.y = location.y +4;
      }
      else if(location.x >= 640 && location.x < 670+15){
      location.x = 670+15;
-     location.y = location.y -4;
+     location.y = location.y +4;
      }
      
    }//end VERTICAL RECTANGLE RIGHT TOP
