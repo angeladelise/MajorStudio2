@@ -18,6 +18,9 @@ Cheese c3;
 Cheese c4;
 Cheese c5;
 
+Cat cat;
+Boolean catCollide;
+
 int timer;
 int timeLeft;
 int timeClock;
@@ -45,6 +48,9 @@ PImage instr1;
 PImage instr2;
 PImage instr3;
 
+PImage lose;
+PImage win;
+
 int homeTimer = 0;
 
 int mazeX;
@@ -71,6 +77,9 @@ void setup()
    c4 = new Cheese(random(50, width-50),random(50, height- 50));
    c5 = new Cheese(random(50, width-50),random(50, height- 50));
    
+   cat = new Cat(1000,1000);
+   catCollide = false;
+   
    //pick a random number to change player
   // random = int(random(30,100));
 
@@ -79,14 +88,17 @@ void setup()
    instr1 = loadImage("toxoInstr1.png");
    instr2 = loadImage("toxoInstr2.png");
    instr3 = loadImage("toxoInstr3.png");
-  
+   win = loadImage("win.png");
+   lose = loadImage("lose.png");
+   
+ 
 }
 
 
 void draw()
 {
   background(0);
-  
+
   
 
 //HOME SCREEN
@@ -142,19 +154,12 @@ void draw()
    p2.collide();
    p3.collide();
    c1.collide();
+   cat.collide();
    
 //MAZE LAYOUT
    noFill();
    stroke(255);
-   
-//HORIZONTAL RECTANGLES
-   //for(int i = 0; i < height; i ++){
-   //  if(i % 300 == 0){
-   //    rect(0, i+60, 180, 30);
-   //    rect(width-180, i+60, 180, 30);
-      
-   //  }
-   //}
+
    
    rect(0, 0+60, 180, 30);
    rect(width-180, 0+60, 180, 30);
@@ -206,7 +211,7 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
 
 
    
-   text("Score: " + score, width -300, 30);
+   text("Score: " + score, width -150, 30);
     
    timer ++;
    
@@ -225,7 +230,7 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
    }
    
    textSize(30);
-   text("Time Left " + displayClock, 50,50);
+   text("Time Left " + displayClock, 20,30);
    
  //WIN AND LOSE TEXT
    if(timeLeft == 0 && score < 50){
@@ -248,11 +253,14 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
     c3.draw();
     c4.draw();
     c5.draw();
+    cat.draw();
     
     
     p1.noControl();
     p2.noControl();
     p3.noControl();
+    
+    cat.followRat();
   
   stroke(255,0,0);
   noFill();
@@ -301,8 +309,8 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
                 rat.slowControl();
                 
                 }
+                            
                 
-                  
     //RAT FREEZE
     if(ratFreeze == true){
       freezeTimer ++;
@@ -377,8 +385,49 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
              score = score + 10;
            }
 
+
+        //CAT comes into randomly
+        random = int(random(30,100));
+       
+        
+    if(dist(cat.xPos, cat.yPos, rat.xPos, rat.yPos-5) < 30 )
+       {
+       catCollide = true;
+       }
+        
+        if(timeClock == 0 || catCollide == true){
+         //lose state
+        state = 6;
+        }
+        
+        if(score == 50){
+        //win state
+        state = 7;
+        }
+
            
    }//end of state 5
+   
+ //LOSE STATE
+   if(state == 6){
+     image(lose, 0, 0);
+     if(mousePressed){
+     setup();
+     state = 1;
+     }
+   
+   }
+   
+   
+//WIN STATE
+  if(state == 7){
+    image(win, 0, 0);
+    if(mousePressed){
+     setup();
+     state = 1;
+     }
+  
+  }
  
 }//end of draw
 
