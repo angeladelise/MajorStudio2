@@ -65,7 +65,22 @@ class Parasite{
      
   } //end of ratConrol
   
-  void noControl(){
+  void up(){
+  location.y = location.y- 2;
+  }
+  
+  void down(){
+  location.y = location.y+ 2;
+  }
+  void left(){
+  location.x = location.x- 2;
+  }
+  void right(){
+  location.x = location.x+ 2;
+  }
+
+  
+  void followRat(){
     
  //IF IMMUNE IS FALSE
  if(immune == false){
@@ -74,17 +89,17 @@ class Parasite{
   //ellipse(50,50,200,100);
     if(abs(location.x-rat.xPos) <= 5){
       if(rat.yPos> location.y){
-           location.y = location.y+ 2;
+           location.y = location.y+ 3;
            }
        else if(rat.yPos <location.y){
-           location.y = location.y- 2;
+           location.y = location.y- 3;
            }     
          }// end of abs value
        else if(rat.xPos> location.x){
-        location.x = location.x+ 2;
+        location.x = location.x+ 3;
        }
        else if(rat.xPos <location.x){
-         location.x = location.x- 2;
+         location.x = location.x- 3;
        } 
       
  }// end of immune is false

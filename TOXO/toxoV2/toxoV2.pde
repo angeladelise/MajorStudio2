@@ -7,6 +7,8 @@ int immuneTimer;
 Parasite p1;
 Parasite p2;
 Parasite p3;
+Parasite p4;
+Parasite p5;
 boolean paraControl;
 boolean p1dead;
 boolean p2dead;
@@ -36,8 +38,8 @@ int score;
 
 int random;
 
-// Get a random element from an array
-String[] words = {"up", "down", "left", "right"};
+// RANDOM CAT MOVEMENT
+String[] words = {"up", "down", "left", "right", "right", "follow"};
 int index;
 
 int lives = 3;
@@ -72,6 +74,8 @@ void setup()
    p1 = new Parasite(100, 600);
    p2 = new Parasite(600, 50);
    p3 = new Parasite(800,200);
+   p4 = new Parasite(900, 50);
+   p5 = new Parasite(200,200);
    
    c1 = new Cheese(random(50, width-50),random(50, height- 50));
    c2 = new Cheese(random(50, width-50),random(50, height- 50));
@@ -83,7 +87,7 @@ void setup()
    catCollide = false;
    
    //randomly change when parasites follow
-  random = int(random(90,120));
+  random = int(random(30,60));
 
    state = 1;
    home = loadImage("toxoHome.png");
@@ -155,6 +159,8 @@ void draw()
    p1.collide();
    p2.collide();
    p3.collide();
+   p4.collide();
+   p5.collide();
    c1.collide();
    cat.collide();
    
@@ -164,34 +170,64 @@ void draw()
    
    if(words[index] == "up"){
     cat.up();
-      if (cat.yPos <= 30){
+    p1.up();
+    p2.down();
+    p3.followRat();
+    p4.left();
+    p5.followRat();
+      if (cat.yPos < 30){
         catControl();
       }
     }
     else if(words[index] == "down"){
     cat.down();
-    if (cat.yPos >= height-30){
+    p1.down();
+    p2.followRat();
+    p3.right();
+    p4.up();
+    p5.left();
+    if (cat.yPos > height-30){
         catControl();
       }
     }
-    if(words[index] == "left"){
+   else if(words[index] == "left"){
     cat.left();
-    if (cat.xPos <= 30){
+    p1.followRat();
+    p2.left();
+    p3.followRat();
+    p4.right();
+    p5.up();
+    if (cat.xPos < 30){
         catControl();
       }
     }
-    if(words[index] == "right"){
+   else if(words[index] == "right"){
     cat.right();
-    if (cat.xPos <= width-15){
+    p1.followRat();
+    p2.right();
+    p3.up();
+    p4.followRat();
+    p5.down();
+    if (cat.xPos > width-15){
         catControl();
       }
-    } //<>//
+    }
+    else if(words[index] == "follow"){
+    cat.followRat();
+    p1.left();
+    p2.followRat();
+    p3.down();
+    p4.followRat();
+    p5.left();
+    }
+    
+  println(words[index]); //<>//
    
 //MAZE LAYOUT
    noFill();
    stroke(255);
 
-   
+//   
    rect(0, 0+60, 180, 30);
    rect(width-180, 0+60, 180, 30);
    
@@ -279,6 +315,8 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
     p1.draw();
     p2.draw();
     p3.draw();
+    p4.draw();
+    p5.draw();
     c1.draw();
     c2.draw();
     c3.draw();
@@ -287,9 +325,9 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
     cat.draw();
     
     
-    p1.noControl();
-    p2.noControl();
-    p3.noControl();
+ //   p1.noControl();
+ //   p2.noControl();
+ //   p3.noControl();
     
     //cat.followRat();
     cat.wander();
@@ -336,6 +374,22 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
                 ratFreeze = true;
                 hitTimer = hitTimer + 90;
                 }  
+                 else if(dist(p4.xPos, p4.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;                
+                p4.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                } 
+                 else if(dist(p5.xPos, p5.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;                
+                p5.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                } 
                             
                 else{
                 rat.slowControl();
@@ -376,6 +430,22 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
                 ratFreeze = true;
                 hitTimer = hitTimer + 90;
                 }        
+        else if(dist(p4.xPos, p4.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;                
+                p4.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                } 
+       else if(dist(p5.xPos, p5.yPos, rat.xPos, rat.yPos-5) < 30 )
+                {
+                stopClock = timeClock;
+                lives = lives -1;                
+                p5.newPosition();               
+                ratFreeze = true;
+                hitTimer = hitTimer + 90;
+                } 
         
       }
       else{
@@ -470,7 +540,7 @@ void catControl(){
     
     //reset timer and new random value
     resetTimer = 0;
-    random = int(random(30,100));
+    random = int(random(20,40));
     
 }
 

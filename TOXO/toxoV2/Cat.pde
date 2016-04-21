@@ -48,19 +48,19 @@ class Cat{
 //EXTERNAL BOUNDARIES FOR RAT WITH SIZE ACCOUNTED FOR
   if (location.x > width -15){
    location.x = width -15;
-   location.x = location.x- 4;
+   //location.x = location.x- 4;
   }
   else if(location.x < 15){
    location.x = 15;
-   location.x = location.x+ 4;
+  // location.x = location.x+ 4;
   }
   if(location.y < 30){
    location.y = 30;
-   location.y = location.y+ 4;
+  // location.y = location.y+ 4;
   }
   else if(location.y > height -30){
    location.y = height -30;
-   location.y = location.y- 4;
+  // location.y = location.y- 4;
   }
   
   } //end wander
