@@ -27,6 +27,7 @@ int timeClock;
 String displayClock;
 int stopClock;
 boolean ratFreeze;
+int resetTimer;
 
 int freezeTimer;
 int hitTimer;
@@ -36,7 +37,7 @@ int score;
 int random;
 
 // Get a random element from an array
-String[] words = {"rat"};
+String[] words = {"up", "down", "left", "right"};
 int index;
 
 int lives = 3;
@@ -62,6 +63,7 @@ void setup()
    timer = 0;
    score = 0;
    immuneTimer = 0;
+   resetTimer = 0;
    
    frameRate(30);
    
@@ -80,8 +82,8 @@ void setup()
    cat = new Cat(width/2,1000);
    catCollide = false;
    
-   //pick a random number to change player
-  // random = int(random(30,100));
+   //randomly change when parasites follow
+  random = int(random(90,120));
 
    state = 1;
    home = loadImage("toxoHome.png");
@@ -155,6 +157,35 @@ void draw()
    p3.collide();
    c1.collide();
    cat.collide();
+   
+   if(resetTimer == random){
+    catControl();
+   } 
+   
+   if(words[index] == "up"){
+    cat.up();
+      if (cat.yPos <= 30){
+        catControl();
+      }
+    }
+    else if(words[index] == "down"){
+    cat.down();
+    if (cat.yPos >= height-30){
+        catControl();
+      }
+    }
+    if(words[index] == "left"){
+    cat.left();
+    if (cat.xPos <= 30){
+        catControl();
+      }
+    }
+    if(words[index] == "right"){
+    cat.right();
+    if (cat.xPos <= width-15){
+        catControl();
+      }
+    } //<>//
    
 //MAZE LAYOUT
    noFill();
@@ -386,9 +417,7 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
              score = score + 10;
            }
 
-
-        //CAT comes into randomly
-        random = int(random(30,100));
+        
        
         
     if(dist(cat.xPos, cat.yPos, rat.xPos, rat.yPos-5) < 30 )
@@ -433,13 +462,14 @@ if(rat.xPos < 180 && rat.xPos>0 && rat.yPos >60 && rat.yPos < 90){
 }//end of draw
 
 
-void pickPlayer(){
-  
+void catControl(){
     index = int(random(words.length));  // Same as int(random(5))
     println(words[index]);  // Prints one of the five words
     
+    
+    
     //reset timer and new random value
-    timer = 0;
+    resetTimer = 0;
     random = int(random(30,100));
     
 }
